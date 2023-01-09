@@ -1,0 +1,51 @@
+body {
+    background-color: #E3DAC9;
+}
+
+section[data-testid='stSidebar'] {
+    background-color: #111;
+    min-width:unset !important;
+    width: unset !important;
+    flex-shrink: unset !important;
+    
+}
+
+button[kind="header"] {
+    background-color: transparent;
+    color:rgb(180, 167, 141)
+}
+
+@media(hover){
+    header[data-testid="stHeader"] {
+        display:none;
+    }
+
+    section[data-testid='stSidebar'] > div {
+        height: 100%;
+        width: 95px;
+        position: relative;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s ease;
+        padding-top: 60px;
+        white-space: nowrap;
+    }
+
+    section[data-testid='stSidebar'] > div:hover{
+    width: 300px;
+    }
+
+    button[kind="header"] {
+        display: none;
+    }
+}
+     
+@media(max-width: 272px){
+    
+    section[data-testid='stSidebar'] > div {
+        width:15rem;
+    }
+}
