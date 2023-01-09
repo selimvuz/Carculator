@@ -37,7 +37,12 @@ if tabs == 'Price Estimation':
 
 elif tabs == 'Raw Data':
     st.title("Raw Data")
-    st.write('')
+    imageThree = ('./imageThree.png')
+    st.image(imageThree, "")
+    imageTwo = ('./imageTwo.png')
+    st.image(imageTwo, "")
+    imageFour = ('./imageFour.png')
+    st.image(imageFour, "")
 
 elif tabs == 'About Us':
     st.title("About Us")
