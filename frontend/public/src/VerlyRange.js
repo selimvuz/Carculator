@@ -75,4 +75,4 @@ function VerlyRange(id, color) {
       requestAnimationFrame(animate);
     }
     animate();
-  }
+}
