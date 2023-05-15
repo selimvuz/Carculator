@@ -50,32 +50,31 @@ body {
 
 
 .first { width: 30% }
-.first span { color: #655ecf }
+.first span { color: black }
 .first .slider::-webkit-slider-thumb { background: #655ecf }
 .first .slider { background: #c4bfff }
 
 .second { width: 30% }
-.second span { color: #eb3992 }
+.second span { color: black }
 .second .slider::-webkit-slider-thumb { background: #eb3992 }
 .second .slider { background: #ff7ebe }
 
 .third { width: 30% }
-.third span { color: #14bd3e }
+.third span { color: black }
 .third .slider::-webkit-slider-thumb { background: #14bd3e }
-.third .slider { background: #6feb8e }
+.third .slider { background: linear-gradient(to right, black, red, orange, yellow, green, blue, indigo, violet, white); }
 
 .fourth { width: 30% }
-.fourth span { color: #395aeb }
+.fourth span { color: black }
 .fourth .slider::-webkit-slider-thumb { background: #395aeb }
 .fourth .slider { background: #718afa }
 
 .fifth { width: 30% }
-.fifth span { color: #000000 }
-.fifth .slider::-webkit-slider-thumb { background: #000000 }
+.fifth span { color: black }
+.fifth .slider::-webkit-slider-thumb { background: #162b4d }
 .fifth .slider { background: #808080 }
 
 .sixth { width: 30% }
-.sixth span { color: #ff0000 }
+.sixth span { color: black }
 .sixth .slider::-webkit-slider-thumb { background: #ff0000 }
 .sixth .slider { background: #FFA500 }
-

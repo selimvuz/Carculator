@@ -4,7 +4,7 @@ import './Home.css'
 function Home() {
   return (
     <div className='home'>
-      <h1>Carculator</h1>
+      <h1 id='headline'>Carculator</h1>
     </div>
   );
 }
