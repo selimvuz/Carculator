@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import Slider from './components/Slider';
+import Button from './components/Button';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Reports from './pages/Reports';
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <Navbar />
         <Slider />
+        <Button />
         <Routes>
           <Route path='/' exact element={<Home/>} />
           <Route path='/reports' element={<Reports/>} />
