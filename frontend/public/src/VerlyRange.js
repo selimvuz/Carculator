@@ -1,5 +1,8 @@
+/* eslint-disable no-undef */
+// eslint-disable-next-line no-unused-vars
 function VerlyRange(id, color) {
-    let DOMSlider = document.getElementById(id);
+  let DOMSlider = document.getElementById(id);
+  if (DOMSlider) {
     let canvas = document.createElement('canvas');
     let ctx = canvas.getContext('2d');
     let width = DOMSlider.scrollWidth;
@@ -15,7 +18,7 @@ function VerlyRange(id, color) {
     // iteration, canvas, ctx
     let verly = new Verly(50, canvas, ctx);
     let rope = generateRope();
-  
+
     // generic function to apply reset of rope wehn resizing
     function generateRope() {
       let rope = verly.createRope(0, 0, width / 20, 17, 0);
@@ -23,7 +26,7 @@ function VerlyRange(id, color) {
       // rope extra tweaks
       rope.setGravity(gravity);
       rope.pin(lastIndex);
-  
+
       // overwrite render function
       rope.renderSticks = () => {
         for (let i = 0; i < rope.sticks.length; i++) {
@@ -40,19 +43,19 @@ function VerlyRange(id, color) {
       }
       return rope;
     }
-  
+
     // handle resize 
     window.addEventListener('resize', function () {
       width = DOMSlider.scrollWidth
       height = width / 2;
       canvas.width = verly.WIDTH = width;
       canvas.height = verly.HEIGHT = height;
-  
+
       rope = generateRope();
-  
+
       setRopePosition();
     });
-  
+
     // rope end point position
     function setRopePosition() {
       let ratio = (DOMSlider.value - DOMSlider.min) / (DOMSlider.max - DOMSlider.min);
@@ -65,14 +68,22 @@ function VerlyRange(id, color) {
     }
     setRopePosition();
     DOMSlider.addEventListener('input', setRopePosition);
-  
+
     function animate() {
       ctx.clearRect(0, 0, width, height);
-  
+
       verly.update();
       rope.renderSticks();
-  
+
       requestAnimationFrame(animate);
     }
     animate();
+  }
+  else {
+    function refreshPage() {
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
+    }
+    refreshPage();
+  }
 }
