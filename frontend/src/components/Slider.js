@@ -3,14 +3,14 @@ import map from './assets/map.png';
 
 function Slider() {
   var defaultValue = 2011;
-  const [sliderValue, setSliderValue] = useState(7);
+  const [sliderValue, setSliderValue] = useState(6);
   const [fuelValue, setFuelValue] = useState(1);
   const [yearValue, setYearValue] = useState(defaultValue);
   const [warrantyValue, setWarrantyValue] = useState(1);
   const [brandValue, setBrandValue] = useState(12);
   const [locationValue, setLocationValue] = useState(3);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const colorNames = ["Black", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "White"];  const [sliderText, setSliderText] = useState(colorNames[sliderValue]);
+  const colorNames = ["Black", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "White", "White"];  const [sliderText, setSliderText] = useState(colorNames[sliderValue]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fuelNames = ["Gasoline", "Diesel", "LPG"]; const [FuelText, setFuelText] = useState(fuelNames[fuelValue]);
   // eslint-disable-next-line react-hooks/exhaustive-deps, no-unused-vars
@@ -169,7 +169,7 @@ function Slider() {
   }
 
   const renderSpanText = () => {
-      return <span>Manufacturing Year: {yearValue}</span>;
+      return <span id="spans">Manufacturing Year: {yearValue}</span>;
   };
 
   return (
@@ -191,7 +191,7 @@ function Slider() {
           </label>
 
           <label className="slider-container second">
-            <span>Warranty Period: {warrantyText}</span>
+            <span id='spans2'>Warranty Period: {warrantyText}</span>
             <input
               className="slider"
               id="range-slider2"
@@ -212,7 +212,7 @@ function Slider() {
               type="range"
               min="0"
               step="0.01"
-              max="8"
+              max="9"
               defaultValue="6"
               onChange={handleSliderChange}
             />
