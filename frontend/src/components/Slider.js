@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import map from './assets/map.png';
 
 function Slider() {
   const [sliderValue, setSliderValue] = useState(9);
@@ -6,6 +7,7 @@ function Slider() {
   const [yearValue, setYearValue] = useState(21);
   const [warrantyValue, setWarrantyValue] = useState(5);
   const [brandValue, setBrandValue] = useState(30);
+  const [locationValue, setLocationValue] = useState(6);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const colorNames = ["Black", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "White"];  const [sliderText, setSliderText] = useState(colorNames[sliderValue]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -16,7 +18,9 @@ function Slider() {
   const warrantyNames = ["No warranty", "3 months", "6 months", "1 year", "DS warranty"]; const [warrantyText, setWarrantyText] = useState(warrantyNames[warrantyValue]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const brandNames = ["Alfa Romeo", "Mitsubishi", "MINI", "Mazda", "Cupra", "SUZUKI", "Subaru", "Jeep", "Ssangyong", "Porsche", "Mercedes-Benz", "Honda", "Toyota", "Skoda", "SEAT", "Renault", "Peugeot", "Opel", "Nissan", "Land Rover", "KIA", "HYUNDAI", "Ford", "Fiat", "Dacia", "Citroen", "BMW", "Audi", "Volvo", "Volkswagen"]; const [brandText, setBrandText] = useState(brandNames[brandValue]);
-  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const locationNames = ["Akdeniz Bölgesi", "Marmara Bölgesi", "Karadeniz Bölgesi", "Ege Bölgesi", "İç Anadolu Bölgesi", "Güneydoğu Anadolu Bölgesi"]; const [locationText, setLocationText] = useState(locationNames[locationValue]);
+
   useEffect(() => {
     setSliderText(colorNames[sliderValue]);
   }, [sliderValue, colorNames]);
@@ -36,6 +40,11 @@ function Slider() {
   useEffect(() => {
     setBrandText(brandNames[brandValue]);
   }, [brandValue, brandNames]);
+
+  useEffect(() => {
+    setLocationText(locationNames[locationValue]);
+  }, [locationValue, locationNames]);
+  var mapImage = document.getElementById("map");
 
   function handleSliderChange(event) {
     const value = parseInt(event.target.value);
@@ -62,6 +71,15 @@ function Slider() {
     const value = parseInt(event.target.value);
     setBrandValue(value);
   }
+
+  function handleSliderChangeSix(event) {
+    const value = parseInt(event.target.value);
+    setLocationValue(value);
+    if (typeof(mapImage) != 'undefined' && mapImage != null) {
+      mapImage.style.display = "block";
+    }
+  }
+
 
   function sliderSpanColorChanger(color) {
     var spans = document.getElementById("spans");
@@ -203,15 +221,16 @@ function Slider() {
           </label>
 
           <label className="slider-container fifth">
-            <span id='spans5'>Location</span>
+            <span id='spans5'>Location: {locationText}</span>
             <input
               className="slider"
               id="range-slider5"
               type="range"
-              min="1"
+              min="0"
               step="0.01"
-              max="100"
-              defaultValue="90"
+              max="5"
+              defaultValue="4"
+              onChange={handleSliderChangeSix}
             />
           </label>
 
@@ -228,6 +247,8 @@ function Slider() {
               onChange={handleSliderChangeFive}
             />
           </label>
+
+          <img id="map" src={map} alt="Map" />;
         </section>
       </div>
     </>

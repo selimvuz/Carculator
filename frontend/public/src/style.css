@@ -79,3 +79,12 @@ body {
 .sixth span { color: black }
 .sixth .slider::-webkit-slider-thumb { background: #ff0000 }
 .sixth .slider { background: #FFA500; border-style: solid; border-color: black; border-width: 1px }
+
+#map {
+  position: absolute;
+  top: 55%;
+  left: 52%;
+  width: 100px;
+  height: auto;
+  display: none;
+}
