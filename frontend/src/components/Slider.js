@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 function Slider() {
   const [sliderValue, setSliderValue] = useState(9);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const colorNames = ["Black", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "White", "White"];  const [sliderText, setSliderText] = useState(colorNames[sliderValue]);
 
   useEffect(() => {
@@ -43,51 +44,53 @@ function Slider() {
     const body = document.getElementsByTagName("BODY")[0];;
     const headline = document.getElementById("headline");
     body.style.transition = "all 2s";
-    headline.style.transition = "all 2s";
-    if (sliderValue === 0) {
-      body.style.backgroundColor = "black";
-      sliderSpanColorChanger("white");
-      headline.style.color = "white";
-    }
-    else if (sliderValue === 1) {
-      body.style.backgroundColor = "red";
-      sliderSpanColorChanger("white");
-      headline.style.color = "white";
-    }
-    else if (sliderValue === 2) {
-      body.style.backgroundColor = "orange";
-      sliderSpanColorChanger("black");
-      headline.style.color = "black";
-    }
-    else if (sliderValue === 3) {
-      body.style.backgroundColor = "yellow";
-      sliderSpanColorChanger("black");
-      headline.style.color = "black";
-    }
-    else if (sliderValue === 4) {
-      body.style.backgroundColor = "green";
-      sliderSpanColorChanger("white");
-      headline.style.color = "white";
-    }
-    else if (sliderValue === 5) {
-      body.style.backgroundColor = "blue";
-      sliderSpanColorChanger("white");
-      headline.style.color = "white";
-    }
-    else if (sliderValue === 6) {
-      body.style.backgroundColor = "indigo";
-      sliderSpanColorChanger("white");
-      headline.style.color = "white";
-    }
-    else if (sliderValue === 7) {
-      body.style.backgroundColor = "violet";
-      sliderSpanColorChanger("black");
-      headline.style.color = "black";
-    }
-    else if (sliderValue >= 8) {
-      body.style.backgroundColor = "white";
-      sliderSpanColorChanger("black");
-      headline.style.color = "black";
+    if (typeof(headline) != 'undefined' && headline != null) {
+      headline.style.transition = "all 2s";
+      if (sliderValue === 0) {
+        body.style.backgroundColor = "black";
+        sliderSpanColorChanger("white");
+        headline.style.color = "white";
+      }
+      else if (sliderValue === 1) {
+        body.style.backgroundColor = "red";
+        sliderSpanColorChanger("white");
+        headline.style.color = "white";
+      }
+      else if (sliderValue === 2) {
+        body.style.backgroundColor = "orange";
+        sliderSpanColorChanger("black");
+        headline.style.color = "black";
+      }
+      else if (sliderValue === 3) {
+        body.style.backgroundColor = "yellow";
+        sliderSpanColorChanger("black");
+        headline.style.color = "black";
+      }
+      else if (sliderValue === 4) {
+        body.style.backgroundColor = "green";
+        sliderSpanColorChanger("white");
+        headline.style.color = "white";
+      }
+      else if (sliderValue === 5) {
+        body.style.backgroundColor = "blue";
+        sliderSpanColorChanger("white");
+        headline.style.color = "white";
+      }
+      else if (sliderValue === 6) {
+        body.style.backgroundColor = "indigo";
+        sliderSpanColorChanger("white");
+        headline.style.color = "white";
+      }
+      else if (sliderValue === 7) {
+        body.style.backgroundColor = "violet";
+        sliderSpanColorChanger("black");
+        headline.style.color = "black";
+      }
+      else if (sliderValue >= 8) {
+        body.style.backgroundColor = "white";
+        sliderSpanColorChanger("black");
+        headline.style.color = "black";
+      }
     }
   }
 
