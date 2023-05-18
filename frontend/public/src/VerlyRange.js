@@ -10,7 +10,7 @@ function VerlyRange(id, color) {
     canvas.width = width;
     canvas.height = height;
     canvas.style.pointerEvents = 'none';
-    canvas.style.transform = 'translate(-295px, 6px)';
+    canvas.style.transform = 'translate(-300px, 6px)';
     DOMSlider.parentElement.appendChild(canvas);
     
     const gravity = new Vector(0, 0.3);

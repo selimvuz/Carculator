@@ -27,7 +27,7 @@ Button.defaultProps = {
 function Buttons() {
   return (
     <Fragment>
-      <Button id="resetButton" role="button" filled >Reset</Button>
+      <Button id="resetButton" role="button" href="" filled >Reset</Button>
       <Button id="carButton" as="a" href="#" filled >Carculate</Button>
     </Fragment>
   );

@@ -5,6 +5,7 @@ body {
 }
 
 .all-sliders{
+  position: absolute;
   max-width: 1000px;
   height: auto;
 }
@@ -82,8 +83,8 @@ body {
 
 #map {
   position: absolute;
-  top: 55%;
-  left: 52%;
+  top: 90%;
+  left: 53%;
   width: 100px;
   height: auto;
   display: none;
