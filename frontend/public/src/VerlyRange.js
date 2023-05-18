@@ -82,7 +82,8 @@ function VerlyRange(id, color) {
   else {
     function refreshPage() {
       // eslint-disable-next-line no-restricted-globals
-      location.reload();
+      setTimeout(() => location.reload(), 1000);
+      // eslint-disable-next-line no-restricted-globals
     }
     refreshPage();
   }

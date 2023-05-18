@@ -2,17 +2,65 @@ import React, { useEffect, useState } from 'react';
 
 function Slider() {
   const [sliderValue, setSliderValue] = useState(9);
+  const [fuelValue, setFuelValue] = useState(3);
+  const [yearValue, setYearValue] = useState(21);
+  const [warrantyValue, setWarrantyValue] = useState(5);
+  const [brandValue, setBrandValue] = useState(30);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const colorNames = ["Black", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "White", "White"];  const [sliderText, setSliderText] = useState(colorNames[sliderValue]);
-
+  const colorNames = ["Black", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "White"];  const [sliderText, setSliderText] = useState(colorNames[sliderValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const fuelNames = ["Gasoline", "Diesel", "LPG"]; const [FuelText, setFuelText] = useState(fuelNames[fuelValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const yearNames = ["2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; const [yaerText, setYearText] = useState(yearNames[yearValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const warrantyNames = ["No warranty", "3 months", "6 months", "1 year", "DS warranty"]; const [warrantyText, setWarrantyText] = useState(warrantyNames[warrantyValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const brandNames = ["Alfa Romeo", "Mitsubishi", "MINI", "Mazda", "Cupra", "SUZUKI", "Subaru", "Jeep", "Ssangyong", "Porsche", "Mercedes-Benz", "Honda", "Toyota", "Skoda", "SEAT", "Renault", "Peugeot", "Opel", "Nissan", "Land Rover", "KIA", "HYUNDAI", "Ford", "Fiat", "Dacia", "Citroen", "BMW", "Audi", "Volvo", "Volkswagen"]; const [brandText, setBrandText] = useState(brandNames[brandValue]);
+  
   useEffect(() => {
     setSliderText(colorNames[sliderValue]);
   }, [sliderValue, colorNames]);
+
+  useEffect(() => {
+    setFuelText(fuelNames[fuelValue]);
+  }, [fuelValue, fuelNames]);
+
+  useEffect(() => {
+    setYearText(yearNames[yearValue]);
+  }, [yearValue, yearNames]);
+
+  useEffect(() => {
+    setWarrantyText(warrantyNames[warrantyValue]);
+  }, [warrantyValue, warrantyNames]);
+
+  useEffect(() => {
+    setBrandText(brandNames[brandValue]);
+  }, [brandValue, brandNames]);
 
   function handleSliderChange(event) {
     const value = parseInt(event.target.value);
     setSliderValue(value);
     backgroundChanger();
+  }
+
+  function handleSliderChangeTwo(event) {
+    const value = parseInt(event.target.value);
+    setFuelValue(value);
+  }
+
+  function handleSliderChangeThree(event) {
+    const value = parseInt(event.target.value);
+    setYearValue(value);
+  }
+
+  function handleSliderChangeFour(event) {
+    const value = parseInt(event.target.value);
+    setWarrantyValue(value);
+  }
+
+  function handleSliderChangeFive(event) {
+    const value = parseInt(event.target.value);
+    setBrandValue(value);
   }
 
   function sliderSpanColorChanger(color) {
@@ -99,28 +147,30 @@ function Slider() {
       <div className="wrapper">
         <section className="all-sliders">
           <label className="slider-container first">
-            <span id='spans'>Manufacturing Year</span>
+            <span id='spans'>Manufacturing Year: {yaerText}</span>
             <input
               className="slider"
               id="range-slider"
               type="range"
-              min="1"
+              min="0"
               step="0.01"
-              max="100"
-              defaultValue="80"
+              max="20"
+              defaultValue="9"
+              onChange={handleSliderChangeThree}
             />
           </label>
 
           <label className="slider-container second">
-            <span id='spans2'>Warranty Period (Months)</span>
+            <span id='spans2'>Warranty Period: {warrantyText}</span>
             <input
               className="slider"
               id="range-slider2"
               type="range"
-              min="1"
+              min="0"
               step="0.01"
-              max="100"
-              defaultValue="20"
+              max="4"
+              defaultValue="1"
+              onChange={handleSliderChangeFour}
             />
           </label>
 
@@ -132,22 +182,23 @@ function Slider() {
               type="range"
               min="0"
               step="0.01"
-              max="9"
+              max="8"
               defaultValue="6"
               onChange={handleSliderChange}
             />
           </label>
 
           <label className="slider-container fourth">
-            <span id='spans4'>Fuel Type</span>
+            <span id='spans4'>Fuel Type: {FuelText}</span>
             <input
               className="slider"
               id="range-slider4"
               type="range"
-              min="1"
+              min="0"
               step="0.01"
-              max="100"
-              defaultValue="35"
+              max="2"
+              defaultValue="1"
+              onChange={handleSliderChangeTwo}
             />
           </label>
 
@@ -165,15 +216,16 @@ function Slider() {
           </label>
 
           <label className="slider-container sixth">
-            <span id='spans6'>Brand</span>
+            <span id='spans6'>Brand: {brandText}</span>
             <input
               className="slider"
               id="range-slider6"
               type="range"
-              min="1"
+              min="0"
               step="0.01"
-              max="100"
-              defaultValue="45"
+              max="20"
+              defaultValue="13"
+              onChange={handleSliderChangeFive}
             />
           </label>
         </section>
