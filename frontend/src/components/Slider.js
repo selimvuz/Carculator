@@ -20,7 +20,7 @@ function Slider() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const brandNames = ["Alfa Romeo", "Mitsubishi", "MINI", "Mazda", "Cupra", "SUZUKI", "Subaru", "Jeep", "Ssangyong", "Porsche", "Mercedes-Benz", "Honda", "Toyota", "Skoda", "SEAT", "Renault", "Peugeot", "Opel", "Nissan", "Land Rover", "KIA", "HYUNDAI", "Ford", "Fiat", "Dacia", "Citroen", "BMW", "Audi", "Volvo", "Volkswagen"]; const [brandText, setBrandText] = useState(brandNames[brandValue]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const locationNames = ["Akdeniz Bölgesi", "Marmara Bölgesi", "Karadeniz Bölgesi", "Ege Bölgesi", "İç Anadolu Bölgesi", "Güneydoğu Anadolu Bölgesi"]; const [locationText, setLocationText] = useState(locationNames[locationValue]);
+  const locationNames = ["Mediterranean Region", "Marmara Region", "Black Sea Region", "Aegean Region", "Central Anatolia", "Southeastern Anatolia"]; const [locationText, setLocationText] = useState(locationNames[locationValue]);
 
   useEffect(() => {
     setSliderText(colorNames[sliderValue]);
