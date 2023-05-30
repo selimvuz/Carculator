@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import './Button.css';
+import { Fragment } from 'https://cdn.skypack.dev/react'
+import { js2xml } from 'xml-js';
+import { saveAs } from 'file-saver';
 import map from './assets/map.png';
 
-function Slider() {
-  var defaultValue = 2011;
+function SliderButton() {
   const [sliderValue, setSliderValue] = useState(6);
   const [fuelValue, setFuelValue] = useState(1);
-  const [yearValue, setYearValue] = useState(defaultValue);
+  const [yearValue, setYearValue] = useState(2011);
   const [warrantyValue, setWarrantyValue] = useState(1);
   const [brandValue, setBrandValue] = useState(12);
   const [locationValue, setLocationValue] = useState(3);
@@ -172,99 +175,148 @@ function Slider() {
       return <span id="spans">Manufacturing Year: {yearValue}</span>;
   };
 
+  const saveSliderValuesToXML = () => {
+    // Get slider values
+    const sliderValues = [colorNames[sliderValue], fuelNames[fuelValue], yearValue, warrantyNames[warrantyValue], brandNames[brandValue], locationNames[locationValue]];
+  
+    // Create XML object
+    const xmlObject = {
+      sliders: {
+        slider: sliderValues.map((value) => ({
+          _text: value,
+        })),
+      },
+    };
+  
+    // Convert XML object to XML string
+    const xmlString = js2xml(xmlObject, { compact: true, spaces: 4 });
+  
+    // Save XML string to file using FileSaver.js
+    const blob = new Blob([xmlString], { type: 'application/xml' });
+    saveAs(blob, 'slider_values.xml');
+  };
+  
+  const Button = ({ as, children, filled, secondary, ...rest }) => {
+    const that = {
+      as
+    }
+    return (
+      <that.as className={`dir-control ${secondary ? 'dir-control--secondary' : ''} ${filled ? 'dir-control--filled' : ''}`} {...rest} >
+        {children}
+        <span/>
+        <span/>
+        <span/>
+        <span/>
+        <b aria-hidden="true">{children}</b>
+        <b aria-hidden="true">{children}</b>
+        <b aria-hidden="true">{children}</b>
+        <b aria-hidden="true">{children}</b>
+      </that.as>
+    )
+  }
+  Button.defaultProps = {
+    as: 'button'
+  }
+
   return (
     <>
-      <div className="wrapper">
-        <section className="all-sliders">
-          <label className="slider-container first">
-            {renderSpanText()}
-            <input
-              className="slider"
-              id="range-slider"
-              type="range"
-              min="2002"
-              step="0.01"
-              max="2022"
-              defaultValue={defaultValue}
-              onChange={handleSliderChangeThree}
-            />
-          </label>
+      <div>
+        <div className="wrapper">
+          <section className="all-sliders">
+            <label className="slider-container first">
+              {renderSpanText()}
+              <input
+                className="slider"
+                id="range-slider"
+                type="range"
+                min="2002"
+                step="0.01"
+                max="2022"
+                defaultValue="2011"
+                onChange={handleSliderChangeThree}
+              />
+            </label>
 
-          <label className="slider-container second">
-            <span id='spans2'>Warranty Period: {warrantyText}</span>
-            <input
-              className="slider"
-              id="range-slider2"
-              type="range"
-              min="0"
-              step="0.01"
-              max="4"
-              defaultValue="1"
-              onChange={handleSliderChangeFour}
-            />
-          </label>
+            <label className="slider-container second">
+              <span id='spans2'>Warranty Period: {warrantyText}</span>
+              <input
+                className="slider"
+                id="range-slider2"
+                type="range"
+                min="0"
+                step="0.01"
+                max="4"
+                defaultValue="1"
+                onChange={handleSliderChangeFour}
+              />
+            </label>
 
-          <label className="slider-container third">
-            <span id='spans3'>Color: {sliderText}</span>
-            <input
-              className="slider"
-              id="range-slider3"
-              type="range"
-              min="0"
-              step="0.01"
-              max="9"
-              defaultValue="6"
-              onChange={handleSliderChange}
-            />
-          </label>
+            <label className="slider-container third">
+              <span id='spans3'>Color: {sliderText}</span>
+              <input
+                className="slider"
+                id="range-slider3"
+                type="range"
+                min="0"
+                step="0.01"
+                max="9"
+                defaultValue="6"
+                onChange={handleSliderChange}
+              />
+            </label>
 
-          <label className="slider-container fourth">
-            <span id='spans4'>Fuel Type: {FuelText}</span>
-            <input
-              className="slider"
-              id="range-slider4"
-              type="range"
-              min="0"
-              step="0.01"
-              max="2"
-              defaultValue="1"
-              onChange={handleSliderChangeTwo}
-            />
-          </label>
+            <label className="slider-container fourth">
+              <span id='spans4'>Fuel Type: {FuelText}</span>
+              <input
+                className="slider"
+                id="range-slider4"
+                type="range"
+                min="0"
+                step="0.01"
+                max="2"
+                defaultValue="1"
+                onChange={handleSliderChangeTwo}
+              />
+            </label>
 
-          <label className="slider-container fifth">
-            <span id='spans5'>Location: {locationText}</span>
-            <input
-              className="slider"
-              id="range-slider5"
-              type="range"
-              min="0"
-              step="0.01"
-              max="5"
-              defaultValue="4"
-              onChange={handleSliderChangeSix}
-            />
-          </label>
+            <label className="slider-container fifth">
+              <span id='spans5'>Location: {locationText}</span>
+              <input
+                className="slider"
+                id="range-slider5"
+                type="range"
+                min="0"
+                step="0.01"
+                max="5"
+                defaultValue="4"
+                onChange={handleSliderChangeSix}
+              />
+            </label>
 
-          <label className="slider-container sixth">
-            <span id='spans6'>Brand: {brandText}</span>
-            <input
-              className="slider"
-              id="range-slider6"
-              type="range"
-              min="0"
-              step="0.01"
-              max="29"
-              defaultValue="13"
-              onChange={handleSliderChangeFive}
-            />
-          </label>
+            <label className="slider-container sixth">
+              <span id='spans6'>Brand: {brandText}</span>
+              <input
+                className="slider"
+                id="range-slider6"
+                type="range"
+                min="0"
+                step="0.01"
+                max="29"
+                defaultValue="13"
+                onChange={handleSliderChangeFive}
+              />
+            </label>
 
-          <img id="map" src={map} alt="Map" />
-        </section>
+            <img id="map" src={map} alt="Map" />
+          </section>
+        </div>
+      <Fragment>
+            <Button id="resetButton" role="button" href="" filled >Reset</Button>
+            <Button id="carButton" as="a" onClick={saveSliderValuesToXML} filled >Carculate</Button>
+      </Fragment>
       </div>
     </>
   );
 }
 
-export default Slider;
+export default SliderButton;

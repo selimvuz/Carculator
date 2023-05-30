@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import Slider from './components/Slider';
-import Button from './components/Button';
+import SliderButton from './components/SliderButton';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Statistics from './pages/Statistics';
@@ -13,8 +12,7 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <Slider />
-        <Button />
+        <SliderButton />
         <Routes>
           <Route path='/' exact element={<Home/>} />
           <Route path='/statistics' element={<Statistics />} />
