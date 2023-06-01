@@ -2,6 +2,7 @@ canvas { position: absolute }
 
 body {
   background-color: #e3dac9;
+  overflow: hidden;
 }
 
 .all-sliders{

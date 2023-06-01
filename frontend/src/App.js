@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Statistics from './pages/Statistics';
 import About from './pages/About';
+import { Speedo } from './components/Speedometer.js';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <Navbar />
         <SliderButton />
+        <Speedo />
         <Routes>
           <Route path='/' exact element={<Home/>} />
           <Route path='/statistics' element={<Statistics />} />

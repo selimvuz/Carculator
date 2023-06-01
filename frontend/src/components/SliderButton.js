@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Button.css';
 import { Fragment } from 'https://cdn.skypack.dev/react'
 import { js2xml } from 'xml-js';
 import { saveAs } from 'file-saver';
 import map from './assets/map.png';
 
-function SliderButton() {
+function SliderButton(speedoVariable, controlPoint) {
+  controlPoint = 1;
   const [sliderValue, setSliderValue] = useState(6);
   const [fuelValue, setFuelValue] = useState(1);
   const [yearValue, setYearValue] = useState(2011);
@@ -24,6 +25,11 @@ function SliderButton() {
   const brandNames = ["Alfa Romeo", "Mitsubishi", "MINI", "Mazda", "Cupra", "SUZUKI", "Subaru", "Jeep", "Ssangyong", "Porsche", "Mercedes-Benz", "Honda", "Toyota", "Skoda", "SEAT", "Renault", "Peugeot", "Opel", "Nissan", "Land Rover", "KIA", "HYUNDAI", "Ford", "Fiat", "Dacia", "Citroen", "BMW", "Audi", "Volvo", "Volkswagen"]; const [brandText, setBrandText] = useState(brandNames[brandValue]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const locationNames = ["Mediterranean Region", "Marmara Region", "Black Sea Region", "Aegean Region", "Central Anatolia", "Southeastern Anatolia"]; const [locationText, setLocationText] = useState(locationNames[locationValue]);
+  var speedXML = document.getElementById("realInput");
+  if (speedXML != null) {
+    var speedValue = speedXML.value.toString();
+    console.log(speedValue);
+  }
 
   useEffect(() => {
     setSliderText(colorNames[sliderValue]);
@@ -51,33 +57,33 @@ function SliderButton() {
   var mapImage = document.getElementById("map");
 
   function handleSliderChange(event) {
-    const value = parseInt(event.target.value);
+    var value = parseInt(event.target.value);
     setSliderValue(value);
     backgroundChanger();
   }
 
   function handleSliderChangeTwo(event) {
-    const value = parseInt(event.target.value);
+    var value = parseInt(event.target.value);
     setFuelValue(value);
   }
 
   function handleSliderChangeThree(event) {
-    const value = parseInt(event.target.value);
+    var value = parseInt(event.target.value);
     setYearValue(value);
   }
 
   function handleSliderChangeFour(event) {
-    const value = parseInt(event.target.value);
+    var value = parseInt(event.target.value);
     setWarrantyValue(value);
   }
 
   function handleSliderChangeFive(event) {
-    const value = parseInt(event.target.value);
+    var value = parseInt(event.target.value);
     setBrandValue(value);
   }
 
   function handleSliderChangeSix(event) {
-    const value = parseInt(event.target.value);
+    var value = parseInt(event.target.value);
     setLocationValue(value);
     if (typeof(mapImage) != 'undefined' && mapImage != null) {
       mapImage.style.display = "block";
@@ -177,12 +183,12 @@ function SliderButton() {
 
   const saveSliderValuesToXML = () => {
     // Get slider values
-    const sliderValues = [colorNames[sliderValue], fuelNames[fuelValue], yearValue, warrantyNames[warrantyValue], brandNames[brandValue], locationNames[locationValue]];
+    const sliderValues = [colorNames[sliderValue], fuelNames[fuelValue], yearValue, warrantyNames[warrantyValue], brandNames[brandValue], locationNames[locationValue], speedValue];
   
     // Create XML object
     const xmlObject = {
-      sliders: {
-        slider: sliderValues.map((value) => ({
+      carProperties: {
+        values: sliderValues.map((value) => ({
           _text: value,
         })),
       },
@@ -218,105 +224,109 @@ function SliderButton() {
     as: 'button'
   }
 
-  return (
-    <>
-      <div>
-        <div className="wrapper">
-          <section className="all-sliders">
-            <label className="slider-container first">
-              {renderSpanText()}
-              <input
-                className="slider"
-                id="range-slider"
-                type="range"
-                min="2002"
-                step="0.01"
-                max="2022"
-                defaultValue="2011"
-                onChange={handleSliderChangeThree}
-              />
-            </label>
-
-            <label className="slider-container second">
-              <span id='spans2'>Warranty Period: {warrantyText}</span>
-              <input
-                className="slider"
-                id="range-slider2"
-                type="range"
-                min="0"
-                step="0.01"
-                max="4"
-                defaultValue="1"
-                onChange={handleSliderChangeFour}
-              />
-            </label>
-
-            <label className="slider-container third">
-              <span id='spans3'>Color: {sliderText}</span>
-              <input
-                className="slider"
-                id="range-slider3"
-                type="range"
-                min="0"
-                step="0.01"
-                max="9"
-                defaultValue="6"
-                onChange={handleSliderChange}
-              />
-            </label>
-
-            <label className="slider-container fourth">
-              <span id='spans4'>Fuel Type: {FuelText}</span>
-              <input
-                className="slider"
-                id="range-slider4"
-                type="range"
-                min="0"
-                step="0.01"
-                max="2"
-                defaultValue="1"
-                onChange={handleSliderChangeTwo}
-              />
-            </label>
-
-            <label className="slider-container fifth">
-              <span id='spans5'>Location: {locationText}</span>
-              <input
-                className="slider"
-                id="range-slider5"
-                type="range"
-                min="0"
-                step="0.01"
-                max="5"
-                defaultValue="4"
-                onChange={handleSliderChangeSix}
-              />
-            </label>
-
-            <label className="slider-container sixth">
-              <span id='spans6'>Brand: {brandText}</span>
-              <input
-                className="slider"
-                id="range-slider6"
-                type="range"
-                min="0"
-                step="0.01"
-                max="29"
-                defaultValue="13"
-                onChange={handleSliderChangeFive}
-              />
-            </label>
-
-            <img id="map" src={map} alt="Map" />
-          </section>
+  if (controlPoint === 1) {
+    return (
+      <>
+        <div>
+          <div className="wrapper">
+            <section className="all-sliders">
+              <label className="slider-container first">
+                {renderSpanText()}
+                <input
+                  className="slider"
+                  id="range-slider"
+                  type="range"
+                  min="2002"
+                  step="0.01"
+                  max="2022"
+                  defaultValue="2011"
+                  onChange={handleSliderChangeThree}
+                />
+              </label>
+  
+              <label className="slider-container second">
+                <span id='spans2'>Warranty Period: {warrantyText}</span>
+                <input
+                  className="slider"
+                  id="range-slider2"
+                  type="range"
+                  min="0"
+                  step="0.01"
+                  max="4"
+                  defaultValue="1"
+                  onChange={handleSliderChangeFour}
+                />
+              </label>
+  
+              <label className="slider-container third">
+                <span id='spans3'>Color: {sliderText}</span>
+                <input
+                  className="slider"
+                  id="range-slider3"
+                  type="range"
+                  min="0"
+                  step="0.01"
+                  max="9"
+                  defaultValue="6"
+                  onChange={handleSliderChange}
+                />
+              </label>
+  
+              <label className="slider-container fourth">
+                <span id='spans4'>Fuel Type: {FuelText}</span>
+                <input
+                  className="slider"
+                  id="range-slider4"
+                  type="range"
+                  min="0"
+                  step="0.01"
+                  max="2"
+                  defaultValue="1"
+                  onChange={handleSliderChangeTwo}
+                />
+              </label>
+  
+              <label className="slider-container fifth">
+                <span id='spans5'>Location: {locationText}</span>
+                <input
+                  className="slider"
+                  id="range-slider5"
+                  type="range"
+                  min="0"
+                  step="0.01"
+                  max="5"
+                  defaultValue="4"
+                  onChange={handleSliderChangeSix}
+                />
+              </label>
+  
+              <label className="slider-container sixth">
+                <span id='spans6'>Brand: {brandText}</span>
+                <input
+                  className="slider"
+                  id="range-slider6"
+                  type="range"
+                  min="0"
+                  step="0.01"
+                  max="29"
+                  defaultValue="13"
+                  onChange={handleSliderChangeFive}
+                />
+              </label>
+  
+              <img id="map" src={map} alt="Map" />
+            </section>
+          </div>
+        <Fragment>
+              <Button id="resetButton" role="button" href="" filled >Reset</Button>
+              <Button id="carButton" as="a" onClick={saveSliderValuesToXML} filled >Carculate</Button>
+        </Fragment>
         </div>
-      <Fragment>
-            <Button id="resetButton" role="button" href="" filled >Reset</Button>
-            <Button id="carButton" as="a" onClick={saveSliderValuesToXML} filled >Carculate</Button>
-      </Fragment>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else if (controlPoint === 2) {
+    console.log("Just walking around uwu");
+  } 
 }
 
 export default SliderButton;
