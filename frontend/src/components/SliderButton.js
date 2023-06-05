@@ -185,21 +185,33 @@ function SliderButton(speedoVariable, controlPoint) {
     // Get slider values
     const sliderValues = [colorNames[sliderValue], fuelNames[fuelValue], yearValue, warrantyNames[warrantyValue], brandNames[brandValue], locationNames[locationValue], speedValue];
   
+    // Define tag names for each value
+    const tagNames = ['color', 'fuel', 'year', 'warranty', 'brand', 'location', 'speed'];
+
     // Create XML object
     const xmlObject = {
-      carProperties: {
-        values: sliderValues.map((value) => ({
-          _text: value,
+      carProperties: sliderValues.map((value, index) => ({
+          [tagNames[index]]: {
+            _text: value,
+          },
         })),
-      },
-    };
+      };
   
     // Convert XML object to XML string
     const xmlString = js2xml(xmlObject, { compact: true, spaces: 4 });
   
     // Save XML string to file using FileSaver.js
-    const blob = new Blob([xmlString], { type: 'application/xml' });
-    saveAs(blob, 'slider_values.xml');
+    // const blob = new Blob([xmlString], { type: 'application/xml' });
+    // saveAs(blob, 'slider_values.xml');
+    // These 2 lines saves an xml file for testing purposes
+
+    fetch('http://127.0.0.1:5000/api/endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(xmlString)
+    })
   };
   
   const Button = ({ as, children, filled, secondary, ...rest }) => {
