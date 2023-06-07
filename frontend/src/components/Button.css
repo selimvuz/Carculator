@@ -128,3 +128,11 @@
   --textColor: #0d0d0d;
   --bg: #c7edef;
 }
+
+#BoxContainer {
+  position: relative;
+  color: #0d0d0d;
+  float: right;
+  margin-top: -50px;
+  padding: 2px;
+}

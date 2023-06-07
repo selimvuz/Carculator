@@ -123,13 +123,6 @@ function SliderButton(speedoVariable, controlPoint) {
         }
   }
 
-  function savingxmlAccorModel(value)
-  {
-    //To do will translate values according to model
-
-
-  }
-
   function backgroundChanger() {
     const body = document.getElementsByTagName("BODY")[0];;
     const headline = document.getElementById("headline");
@@ -376,6 +369,10 @@ function SliderButton(speedoVariable, controlPoint) {
                   defaultValue="6"
                   onChange={handleSliderChange}
                 />
+                <div id="BoxContainer">
+                  <input type="checkbox" id='metallicBox' name="metallic" value="metallic" />
+                  <label id="metallicText" for="metallic"> Metallic</label>
+                </div>
               </label>
   
               <label className="slider-container fourth">
