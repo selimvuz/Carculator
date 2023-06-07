@@ -7,6 +7,7 @@ import map from './assets/map.png';
 
 function SliderButton(speedoVariable, controlPoint) {
   controlPoint = 1;
+  var postMetallic = "Hayır";
   const [sliderValue, setSliderValue] = useState(6);
   const [fuelValue, setFuelValue] = useState(1);
   const [yearValue, setYearValue] = useState(2011);
@@ -90,6 +91,15 @@ function SliderButton(speedoVariable, controlPoint) {
     }
   }
 
+  function handleBox() {
+    var value = document.getElementById("metallicBox");
+    if (value.checked) {
+      postMetallic = "Evet";
+    }
+    else {
+      postMetallic = "Hayır";
+    }
+  }
 
   function sliderSpanColorChanger(color) {
     var spans = document.getElementById("spans");
@@ -282,6 +292,7 @@ function SliderButton(speedoVariable, controlPoint) {
             _text: value,
           },
         })),
+      Metallic: postMetallic,
       };
   
     // Convert XML object to XML string
@@ -370,7 +381,8 @@ function SliderButton(speedoVariable, controlPoint) {
                   onChange={handleSliderChange}
                 />
                 <div id="BoxContainer">
-                  <input type="checkbox" id='metallicBox' name="metallic" value="metallic" />
+                  <input type="checkbox" id='metallicBox' name="metallic" value="metallic" onChange={handleBox}
+                  />
                   <label id="metallicText" for="metallic"> Metallic</label>
                 </div>
               </label>
