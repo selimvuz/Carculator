@@ -123,6 +123,13 @@ function SliderButton(speedoVariable, controlPoint) {
         }
   }
 
+  function savingxmlAccorModel(value)
+  {
+    //To do will translate values according to model
+
+
+  }
+
   function backgroundChanger() {
     const body = document.getElementsByTagName("BODY")[0];;
     const headline = document.getElementById("headline");
@@ -273,7 +280,7 @@ function SliderButton(speedoVariable, controlPoint) {
     const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue], postLocation, speedValue];
   
     // Define tag names for each value
-    const tagNames = ['color', 'fuel', 'year', 'warranty', 'brand', 'location', 'speed'];
+    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz'];
 
     // Create XML object
     const xmlObject = {
