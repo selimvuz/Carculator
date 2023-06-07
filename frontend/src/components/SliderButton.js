@@ -182,8 +182,95 @@ function SliderButton(speedoVariable, controlPoint) {
   };
 
   const saveSliderValuesToXML = () => {
+    var postColor;
+    var postFuelType;
+    var postLocation;
+    var postWarranty;
+
+    if (colorNames[sliderValue] === "Indigo") {
+      postColor = "Koyu Mor";
+    }
+    else if (colorNames[sliderValue] === "Black") {
+      postColor = "Siyah";
+    }
+    else if (colorNames[sliderValue] === "Red") {
+      postColor = "Kırmızı";
+    }
+    else if (colorNames[sliderValue] === "Orange") {
+      postColor = "Turuncu";
+    }
+    else if (colorNames[sliderValue] === "Yellow") {
+      postColor = "Sarı";
+    }
+    else if (colorNames[sliderValue] === "Green") {
+      postColor = "Siyah";
+    }
+    else if (colorNames[sliderValue] === "Blue") {
+      postColor = "Açık Mavi";
+    }
+    else if (colorNames[sliderValue] === "Violet") {
+      postColor = "Mavi";
+    }
+    else if (colorNames[sliderValue] === "White") {
+      postColor = "Beyaz";
+    }
+    else {
+      postColor = "undefined";
+    }
+
+    if (fuelNames[fuelValue] === "Diesel") {
+      postFuelType = "Dizel";
+    }
+    else if (fuelNames[fuelValue] === "Gasoline") {
+      postFuelType = "Benzin";
+    }
+    else if (fuelNames[fuelValue] === "LPG") {
+      postFuelType = "LPG";
+    }
+    else {
+      postFuelType = "undefined";
+    }
+
+    if (locationNames[locationValue] === "Mediterranean Region") {
+      postLocation = "Akdeniz Bölgesi";
+    }
+    else if(locationNames[locationValue] === "Marmara Region") {
+      postLocation = "Marmara Bölgesi";
+    }
+    else if(locationNames[locationValue] === "Black Sea Region") {
+      postLocation = "Karadeniz Bölgesi";
+    }
+    else if(locationNames[locationValue] === "Aegean Region") {
+      postLocation = "Ege Bölgesi";
+    }
+    else if(locationNames[locationValue] === "Central Anatolia") {
+      postLocation = "İç Anadolu Bölgesi";
+    }
+    else if(locationNames[locationValue] === "Southeastern Anatolia") {
+      postLocation = "GüneyDoğu Anadolu Bölgesi";
+    }
+    else {
+      postLocation = "undefined";
+    }
+
+    if (warrantyNames[warrantyValue] === "No warranty") {
+      postWarranty = "Garantisiz";
+    }
+    else if (warrantyNames[warrantyValue] === "3 months") {
+      postWarranty = "3 ay"
+    }
+    else if (warrantyNames[warrantyValue] === "6 months") {
+      postWarranty = "6 ay"
+    }
+    else if (warrantyNames[warrantyValue] === "1 year") {
+      postWarranty = "1 yıl"
+    }
+    else {
+      postWarranty = "undefined"
+    }
+
     // Get slider values
-    const sliderValues = [colorNames[sliderValue], fuelNames[fuelValue], yearValue, warrantyNames[warrantyValue], brandNames[brandValue], locationNames[locationValue], speedValue];
+    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue], postLocation, speedValue];
   
     // Define tag names for each value
     const tagNames = ['color', 'fuel', 'year', 'warranty', 'brand', 'location', 'speed'];
