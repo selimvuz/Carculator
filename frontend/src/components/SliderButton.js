@@ -280,10 +280,10 @@ function SliderButton(speedoVariable, controlPoint) {
     }
 
     // Get slider values
-    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue], postLocation, speedValue];
+    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue], postLocation, speedValue,postMetallic];
   
     // Define tag names for each value
-    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz'];
+    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz','Metalic'];
 
     // Create XML object
     const xmlObject = {
@@ -292,7 +292,6 @@ function SliderButton(speedoVariable, controlPoint) {
             _text: value,
           },
         })),
-      Metallic: postMetallic,
       };
   
     // Convert XML object to XML string
