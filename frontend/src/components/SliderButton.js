@@ -341,63 +341,74 @@ function SliderButton(speedoVariable, controlPoint) {
     const body = document.getElementsByTagName("BODY")[0];;
     const headline = document.getElementById("headline");
     var modelText = document.getElementById("modelLabel");
+    var metallicText = document.getElementById("metallicText");
     body.style.transition = "all 2s";
     if (typeof(headline) != 'undefined' && headline != null &&
-        typeof(modelText) != 'undefined' && modelText != null) {
+        typeof(modelText) != 'undefined' && modelText != null &&
+        typeof(metallicText) != 'undefined' && metallicText != null) {
       headline.style.transition = "all 2s";
       if (sliderValue === 0) {
         body.style.backgroundColor = "black";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
         modelText.style.color = "white";
+        metallicText.style.color = "white";
       }
       else if (sliderValue === 1) {
         body.style.backgroundColor = "red";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
         modelText.style.color = "white";
+        metallicText.style.color = "white";
       }
       else if (sliderValue === 2) {
         body.style.backgroundColor = "orange";
         sliderSpanColorChanger("black");
         headline.style.color = "black";
         modelText.style.color = "black";
+        metallicText.style.color = "black";
       }
       else if (sliderValue === 3) {
         body.style.backgroundColor = "yellow";
         sliderSpanColorChanger("black");
         headline.style.color = "black";
         modelText.style.color = "black";
+        metallicText.style.color = "black";
       }
       else if (sliderValue === 4) {
         body.style.backgroundColor = "green";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
         modelText.style.color = "white";
+        metallicText.style.color = "white";
       }
       else if (sliderValue === 5) {
         body.style.backgroundColor = "blue";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
         modelText.style.color = "white";
+        metallicText.style.color = "white";
       }
       else if (sliderValue === 6) {
         body.style.backgroundColor = "indigo";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
         modelText.style.color = "white";
+        metallicText.style.color = "white";
       }
       else if (sliderValue === 7) {
         body.style.backgroundColor = "violet";
         sliderSpanColorChanger("black");
         headline.style.color = "black";
         modelText.style.color = "black";
+        metallicText.style.color = "black";
       }
       else if (sliderValue >= 8) {
         body.style.backgroundColor = "white";
         sliderSpanColorChanger("black");
         headline.style.color = "black";
         modelText.style.color = "black";
+        metallicText.style.color = "black";
       }
     }
   }
@@ -494,13 +505,13 @@ function SliderButton(speedoVariable, controlPoint) {
       postWarranty = "undefined"
     }
 
+    var SelectedValue = document.getElementById("models").value;
+
     // Get slider values
-    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue], postLocation, speedValue,postMetallic];
+    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue,postMetallic];
   
     // Define tag names for each value
     const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz','Metalic'];
-
-    var SelectedValue = document.getElementById("models").value;
 
     // Create XML object
     const xmlObject = {
