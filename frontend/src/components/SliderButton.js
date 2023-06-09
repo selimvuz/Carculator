@@ -81,7 +81,211 @@ function SliderButton(speedoVariable, controlPoint) {
   function handleSliderChangeFive(event) {
     var value = parseInt(event.target.value);
     setBrandValue(value);
+    console.log(value);
+    updateModelBox(value);
   }
+
+  function updateModelBox(value) {
+    var currentOptions = document.getElementById("models");
+    var Brand = brandNames[value];
+    currentOptions.innerHTML = "";
+
+    if (Brand === "Toyota") {
+      currentOptions.options.add(new Option("Corolla", "Corolla"));
+      currentOptions.options.add(new Option("Yaris", "Yaris"));
+      currentOptions.options.add(new Option("C-HR", "C-HR"));
+    } else if (Brand === "Audi") {
+      currentOptions.options.add(new Option("A1", "A1"));
+      currentOptions.options.add(new Option("A3", "A3"));
+      currentOptions.options.add(new Option("A4", "A4"));
+      currentOptions.options.add(new Option("A5", "A5"));
+      currentOptions.options.add(new Option("A6", "A6"));
+      currentOptions.options.add(new Option("A8", "A8"));
+      currentOptions.options.add(new Option("Q2", "Q2"));
+      currentOptions.options.add(new Option("Q3", "Q3"));
+      currentOptions.options.add(new Option("Q5", "Q5"));
+      currentOptions.options.add(new Option("Q7", "Q7"));
+      currentOptions.options.add(new Option("Q8", "Q8"));
+    } else if (Brand === "Volkswagen") {
+      currentOptions.options.add(new Option("Polo", "Polo"));
+      currentOptions.options.add(new Option("Caddy", "Caddy"));
+      currentOptions.options.add(new Option("Golf", "Golf"));
+      currentOptions.options.add(new Option("Transporter", "Transporter"));
+      currentOptions.options.add(new Option("Passat", "Passat"));
+      currentOptions.options.add(new Option("Caravelle", "Caravelle"));
+      currentOptions.options.add(new Option("Tiguan", "Tiguan"));
+      currentOptions.options.add(new Option("Arteon", "Arteon"));
+      currentOptions.options.add(new Option("T-ROC", "T-ROC"));
+      currentOptions.options.add(new Option("Touareg", "Touareg"));
+      currentOptions.options.add(new Option("T-Cross", "T-Cross"));
+      currentOptions.options.add(new Option("Taigo", "Taigo"));
+      currentOptions.options.add(new Option("Scirocco", "Scirocco"));
+      currentOptions.options.add(new Option("Jetta", "Jetta"));
+      currentOptions.options.add(new Option("Amarok", "Amarok"));
+      currentOptions.options.add(new Option("Beetle", "Beetle"));
+      currentOptions.options.add(new Option("CC", "CC"));
+    } else if (Brand === "Fiat") {
+      currentOptions.options.add(new Option("Egea", "Egea"));
+      currentOptions.options.add(new Option("Fiorino", "Fiorino"));
+      currentOptions.options.add(new Option("Doblo Combi", "Doblo Combi"));
+      currentOptions.options.add(new Option("Grande Punto", "Grande Punto"));
+      currentOptions.options.add(new Option("Linea", "Linea"));
+      currentOptions.options.add(new Option("Punto Evo", "Punto Evo"));
+      currentOptions.options.add(new Option("Freemont", "Freemont"));
+    } else if (Brand === "Volvo") {
+      currentOptions.options.add(new Option("S60", "S60"));
+      currentOptions.options.add(new Option("S90", "S90"));
+      currentOptions.options.add(new Option("XC90", "XC90"));
+      currentOptions.options.add(new Option("XC60", "XC60"));
+      currentOptions.options.add(new Option("V40", "V40"));
+    } else if (Brand === "BMW") {
+      currentOptions.options.add(new Option("3 Serisi", "3 Serisi"));
+      currentOptions.options.add(new Option("2 SERISI GRAN COUPE", "2 SERISI GRAN COUPE"));
+      currentOptions.options.add(new Option("5 Serisi", "5 Serisi"));
+      currentOptions.options.add(new Option("2 Serisi", "2 Serisi"));
+      currentOptions.options.add(new Option("1 Serisi", "1 Serisi"));
+      currentOptions.options.add(new Option("X1", "X1"));
+      currentOptions.options.add(new Option("X3", "X3"));
+      currentOptions.options.add(new Option("7 Serisi", "7 Serisi"));
+      currentOptions.options.add(new Option("6 Serisi", "6 Serisi"));
+      currentOptions.options.add(new Option("SERIES 1", "SERIES 1"));
+      currentOptions.options.add(new Option("X5", "X5"));
+      currentOptions.options.add(new Option("4 Serisi", "4 Serisi"));
+    } else if (Brand === "Citroen") {
+      currentOptions.options.add(new Option("C3", "C3"));
+      currentOptions.options.add(new Option("C-ELYSEE", "C-ELYSEE"));
+      currentOptions.options.add(new Option("Jumpy", "Jumpy"));
+      currentOptions.options.add(new Option("C5 Aircross", "C5 Aircross"));
+      currentOptions.options.add(new Option("BERLİNGO", "BERLİNGO"));
+      currentOptions.options.add(new Option("C4 PICASSO", "C4 PICASSO"));
+      currentOptions.options.add(new Option("DS4", "DS4"));
+      currentOptions.options.add(new Option("C4 CACTUS", "C4 CACTUS"));
+    } else if (Brand === "Ford") {
+      currentOptions.options.add(new Option("Tourneo Courier", "Tourneo Courier"));
+      currentOptions.options.add(new Option("Focus", "Focus"));
+      currentOptions.options.add(new Option("Tourneo Connect", "Tourneo Connect"));
+      currentOptions.options.add(new Option("KUGA", "KUGA"));
+      currentOptions.options.add(new Option("Ecosport", "Ecosport"));
+      currentOptions.options.add(new Option("Fiesta", "Fiesta"));
+      currentOptions.options.add(new Option("Fusion", "Fusion"));
+      currentOptions.options.add(new Option("B-Max", "B-Max"));
+      currentOptions.options.add(new Option("Mondeo", "Mondeo"));
+      currentOptions.options.add(new Option("Tourneo Custom", "Tourneo Custom"));
+      currentOptions.options.add(new Option("Ranger", "Ranger"));
+    } else if (Brand === "HYUNDAI") {
+      currentOptions.options.add(new Option("I20", "I20"));
+      currentOptions.options.add(new Option("I10", "I10"));
+      currentOptions.options.add(new Option("Tucson", "Tucson"));
+      currentOptions.options.add(new Option("Getz", "Getz"));
+      currentOptions.options.add(new Option("Accent", "Accent"));
+      currentOptions.options.add(new Option("Accent Blue", "Accent Blue"));
+      currentOptions.options.add(new Option("ix35", "ix35"));
+      currentOptions.options.add(new Option("I30", "I30"));
+    } else if (Brand === "Dacia") {
+      currentOptions.options.add(new Option("Lodgy", "Lodgy"));
+      currentOptions.options.add(new Option("Duster", "Duster"));
+      currentOptions.options.add(new Option("Sandero", "Sandero"));
+      currentOptions.options.add(new Option("Sandero Stepway", "Sandero Stepway"));
+    } else if (Brand === "Land Rover") {
+      currentOptions.options.add(new Option("Range Rover Velar", "Range Rover Velar"));
+      currentOptions.options.add(new Option("Range Rover Sport", "Range Rover Sport"));
+      currentOptions.options.add(new Option("Range Rover Evoque", "Range Rover Evoque"));
+      currentOptions.options.add(new Option("Discovery Sport", "Discovery Sport"));
+    } else if (Brand === "Nissan") {
+      currentOptions.options.add(new Option("Qashqai", "Qashqai"));
+      currentOptions.options.add(new Option("Juke", "Juke"));
+      currentOptions.options.add(new Option("Micra", "Micra"));
+      currentOptions.options.add(new Option("X-Trail", "X-Trail"));
+    } else if (Brand === "Peugeot") {
+      currentOptions.options.add(new Option("301", "301"));
+      currentOptions.options.add(new Option("3008", "3008"));
+      currentOptions.options.add(new Option("Rifter", "Rifter"));
+      currentOptions.options.add(new Option("308", "308"));
+      currentOptions.options.add(new Option("2008", "2008"));
+      currentOptions.options.add(new Option("508", "508"));
+      currentOptions.options.add(new Option("208", "208"));
+      currentOptions.options.add(new Option("5008", "5008"));
+      currentOptions.options.add(new Option("206", "206"))
+    } else if (Brand === "Renault") {
+      currentOptions.options.add(new Option("SYMBOL", "SYMBOL"));
+      currentOptions.options.add(new Option("Clio", "Clio"));
+      currentOptions.options.add(new Option("Megane", "Megane"));
+      currentOptions.options.add(new Option("Kadjar", "Kadjar"));
+      currentOptions.options.add(new Option("Captur", "Captur"));
+      currentOptions.options.add(new Option("Taliant", "Taliant"));
+      currentOptions.options.add(new Option("Fluence", "Fluence"));
+      currentOptions.options.add(new Option("Kangoo Multix", "Kangoo Multix"));
+    } else if (Brand === "KIA") {
+      currentOptions.options.add(new Option("Rio", "Rio"));
+      currentOptions.options.add(new Option("Sportage", "Sportage"));
+      currentOptions.options.add(new Option("Picanto", "Picanto"));
+      currentOptions.options.add(new Option("Ceed", "Ceed"));
+    } else if (Brand === "Skoda") {
+      currentOptions.options.add(new Option("Octavia", "Octavia"));
+      currentOptions.options.add(new Option("Karoq", "Karoq"));
+      currentOptions.options.add(new Option("Kodiaq", "Kodiaq"));
+      currentOptions.options.add(new Option("Fabia", "Fabia"));
+      currentOptions.options.add(new Option("Scala", "Scala"));
+      currentOptions.options.add(new Option("Kamiq", "Kamiq"));
+      currentOptions.options.add(new Option("Superb", "Superb"));
+      currentOptions.options.add(new Option("Yeti", "Yeti"));
+      currentOptions.options.add(new Option("Rapid", "Rapid"));
+    } else if (Brand === "Honda") {
+      currentOptions.options.add(new Option("Civic", "Civic"));
+      currentOptions.options.add(new Option("City", "City"));
+      currentOptions.options.add(new Option("CR-V", "CR-V"));
+      currentOptions.options.add(new Option("HR-V", "HR-V"));
+    } else if (Brand === "Mercedes-Benz") {
+      currentOptions.options.add(new Option("A-Serisi", "A-Serisi"));
+      currentOptions.options.add(new Option("GLB", "GLB"));
+      currentOptions.options.add(new Option("E-Serisi", "E-Serisi"));
+      currentOptions.options.add(new Option("S-Serisi", "S-Serisi"));
+      currentOptions.options.add(new Option("B-Serisi", "B-Serisi"));
+      currentOptions.options.add(new Option("C-Serisi", "C-Serisi"));
+      currentOptions.options.add(new Option("CLA-Serisi", "CLA-Serisi"));
+      currentOptions.options.add(new Option("X-Class", "X-Class"));
+      currentOptions.options.add(new Option("Vito", "Vito"));
+    } else if (Brand === "Ssangyong") {
+      currentOptions.options.add(new Option("Korando", "Korando"));
+    } else if (Brand === "Jeep") {
+      currentOptions.options.add(new Option("Renegade", "Renegade"));
+    } else if (Brand === "Subaru") {
+      currentOptions.options.add(new Option("XV", "XV"));
+    } else if (Brand === "SUZUKI") {
+      currentOptions.options.add(new Option("SWIFT", "SWIFT"));
+      currentOptions.options.add(new Option("GRAND VITARA", "GRAND VITARA"));
+    } else if (Brand === "Cupra") {
+      currentOptions.options.add(new Option("Formentor", "Formentor"));
+    } else if (Brand === "Mazda") {
+      currentOptions.options.add(new Option("Mazda3", "Mazda3"));
+    } else if (Brand === "Porsche") {
+      currentOptions.options.add(new Option("Cayenne", "Cayenne"));
+      currentOptions.options.add(new Option("Boxer", "Boxer"));
+    } else if (Brand === "MINI") {
+      currentOptions.options.add(new Option("One", "One"));
+      currentOptions.options.add(new Option("Countryman", "Countryman"));
+    } else if (Brand === "Mitsubishi") {
+      currentOptions.options.add(new Option("Colt", "Colt"));
+    } else if (Brand === "Alfa Romeo") {
+      currentOptions.options.add(new Option("Giulietta", "Giulietta"));
+    } else if (Brand === "SEAT") {
+      currentOptions.options.add(new Option("Yeni Ibiza", "Yeni Ibiza"));
+      currentOptions.options.add(new Option("Leon", "Leon"));
+      currentOptions.options.add(new Option("Ateca", "Ateca"));
+      currentOptions.options.add(new Option("Arona", "Arona"));
+      currentOptions.options.add(new Option("Tarraco", "Tarraco"));
+      currentOptions.options.add(new Option("Altea XL", "Altea XL"));
+      currentOptions.options.add(new Option("Toledo", "Toledo"));
+    } else if (Brand === "Opel") {
+      currentOptions.options.add(new Option("Corsa", "Corsa"));
+      currentOptions.options.add(new Option("Astra", "Astra"));
+      currentOptions.options.add(new Option("Crossland X", "Crossland X"));
+      currentOptions.options.add(new Option("Grandland X", "Grandland X"));
+      currentOptions.options.add(new Option("Insignia", "Insignia"));
+      currentOptions.options.add(new Option("Crossland", "Crossland"));
+      currentOptions.options.add(new Option("Meriva", "Meriva"));
+    }
+  } 
 
   function handleSliderChangeSix(event) {
     var value = parseInt(event.target.value);
@@ -136,53 +340,64 @@ function SliderButton(speedoVariable, controlPoint) {
   function backgroundChanger() {
     const body = document.getElementsByTagName("BODY")[0];;
     const headline = document.getElementById("headline");
+    var modelText = document.getElementById("modelLabel");
     body.style.transition = "all 2s";
-    if (typeof(headline) != 'undefined' && headline != null) {
+    if (typeof(headline) != 'undefined' && headline != null &&
+        typeof(modelText) != 'undefined' && modelText != null) {
       headline.style.transition = "all 2s";
       if (sliderValue === 0) {
         body.style.backgroundColor = "black";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
+        modelText.style.color = "white";
       }
       else if (sliderValue === 1) {
         body.style.backgroundColor = "red";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
+        modelText.style.color = "white";
       }
       else if (sliderValue === 2) {
         body.style.backgroundColor = "orange";
         sliderSpanColorChanger("black");
         headline.style.color = "black";
+        modelText.style.color = "black";
       }
       else if (sliderValue === 3) {
         body.style.backgroundColor = "yellow";
         sliderSpanColorChanger("black");
         headline.style.color = "black";
+        modelText.style.color = "black";
       }
       else if (sliderValue === 4) {
         body.style.backgroundColor = "green";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
+        modelText.style.color = "white";
       }
       else if (sliderValue === 5) {
         body.style.backgroundColor = "blue";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
+        modelText.style.color = "white";
       }
       else if (sliderValue === 6) {
         body.style.backgroundColor = "indigo";
         sliderSpanColorChanger("white");
         headline.style.color = "white";
+        modelText.style.color = "white";
       }
       else if (sliderValue === 7) {
         body.style.backgroundColor = "violet";
         sliderSpanColorChanger("black");
         headline.style.color = "black";
+        modelText.style.color = "black";
       }
       else if (sliderValue >= 8) {
         body.style.backgroundColor = "white";
         sliderSpanColorChanger("black");
         headline.style.color = "black";
+        modelText.style.color = "black";
       }
     }
   }
@@ -284,6 +499,8 @@ function SliderButton(speedoVariable, controlPoint) {
   
     // Define tag names for each value
     const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz'];
+
+    var SelectedValue = document.getElementById("models").value;
 
     // Create XML object
     const xmlObject = {
@@ -427,6 +644,14 @@ function SliderButton(speedoVariable, controlPoint) {
                   defaultValue="13"
                   onChange={handleSliderChangeFive}
                 />
+                <div id="modelSelect">
+                <label id="modelLabel" for="models">Choose a model:</label>
+                  <select id="models" name="models">
+                    <option value="corolla">Corolla</option>
+                    <option value="yaris">Yaris</option>
+                    <option value="chr">C-HR</option>
+                  </select>
+                </div>
               </label>
   
               <img id="map" src={map} alt="Map" />
