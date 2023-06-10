@@ -530,12 +530,15 @@ function SliderButton(speedoVariable, controlPoint) {
     // saveAs(blob, 'slider_values.xml');
     // These 2 lines saves an xml file for testing purposes
 
-    fetch('http://127.0.0.1:5000/api/endpoint', {
+    fetch('/api/endpoint', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(xmlString)
+    }) .then(response => {
+      // Handle the response
+      console.log(response.json()) //may this on console as Promise
     })
   };
   

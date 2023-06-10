@@ -29,12 +29,14 @@ defaultValuesDict = {
     "Konfor Group": 14
 }
 
-# #To do Metalik Renk kategorisinde var mı die kontorl edecek
-# def ControlMetalic(evetHayır):
-#     if
-#         return True
-#     else
-#         return False 
+ColorValues_TupleForMetalic = (
+    "Beyaz",
+    "Gri",
+    "Kırmızı",
+    "Mavi",
+    "Siyah",
+    "Yeşil"
+)
 
 @app.route('/')
 def home():
@@ -44,6 +46,12 @@ def home():
 
 @app.route('/api/endpoint', methods=['POST'])
 def handle_data():
+
+    # if request.method == 'POST':
+    #     data = request.get_json()  # Retrieve the JSON data from the request body
+    # elif request.method == 'GET':
+    #     data = request.args.get('data')  # Retrieve the data from the query parameters
+
     data = request.get_json()
     tree = ET.ElementTree(ET.fromstring('<root>' + data + '</root>')) # this is xml
             
@@ -64,29 +72,40 @@ def handle_data():
     ypred = bst.predict(xgmat)
     ypred_str = np.array2string(ypred) 
     print("ypred_str -> "+ypred_str)
+    #print(jsonify({'result': ypred_str}))
 
-    return ypred_str
+    response = jsonify({'result': ypred_str})
+    print("response " +str(response.data))
+
+    # Set the appropriate response headers
+    # response.headers.add('Access-Control-Allow-Origin', '*')
+    # response.headers.add('Access-Control-Allow-Methods', 'POST')
+    # response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    return jsonify({'result': ypred_str})
 
 
 def process_dataToDataFrame(xmlTree):
     
     #will convert it to DataFrame,Need to assign optimal values if they're not given
     dictTakenProperties_Values ={}
-    brandName =""
+    ModelName =""
     MarkaName =""
+    IsitMetalic =False
     for car_properties in xmlTree.findall('carProperties'):
         for child in car_properties:
             print(child.tag, child.text)
-            # if str(child.tag) =="brand":  
-            #     #brandName = child.text
+            if str(child.tag) =="models":  
+                ModelName = child.text
 
             #To-do FOr Metalic
-
+            if str(child.tag) =="Metalic":
+                if str(child.text) == "Evet" and (str(child.text) in ColorValues_TupleForMetalic):
+                    IsitMetalic = True
             if str(child.tag) =="Marka":
                 MarkaName = child.text
             dictTakenProperties_Values[str(child.tag)] = child.text
     
-    brandName = "CLA-Serisi"
+    # brandName = "CLA-Serisi"
     # dataFrameTOReturn = pd.DataFrame(data)
     single_row = pd.read_csv('single_row.csv')
 
@@ -94,11 +113,15 @@ def process_dataToDataFrame(xmlTree):
 
     dataFrameTOReturn =dataFrameTOReturn.drop("Unnamed: 0",axis=1)
     
-    dataFrameTOReturn.loc[0,"Marka_Model"]= MarkaName +" "+brandName
-    print("MarkaName "+ MarkaName+" brandName "+brandName)
+    dataFrameTOReturn.loc[0,"Marka_Model"]= MarkaName +" "+ModelName
+    print("MarkaName "+ MarkaName+" ModelName "+ModelName)
     print("dataFrameTOReturn[Marka_Model] "+ dataFrameTOReturn["Marka_Model"][0])
 
+    
     dataFrameTOReturn = fillwithDefaultValues(dataFrameTOReturn,dictTakenProperties_Values)
+
+    if IsitMetalic:
+        dataFrameTOReturn.loc[0,"Renk"] = "Metalik"+" "+dataFrameTOReturn.loc[0,"Renk"]
 
     dataFrameTOReturn.to_csv("dataFrameTOReturn.csv")
 
@@ -108,15 +131,6 @@ def process_dataToDataFrame(xmlTree):
 
     return dataFrameTOReturn
 
-"""
-Renk_Metalik Beyaz
-Renk_Metalik Gri
-Renk_Metalik Kırmızı
-Renk_Metalik Mavi
-Renk_Metalik Siyah
-Renk_Metalik Yeşil
-
-"""
 
 
 def fillwithDefaultValues(dataFrame,dictTakenProperties_Values):
