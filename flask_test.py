@@ -38,6 +38,8 @@ ColorValues_TupleForMetalic = (
     "Yeşil"
 )
 
+modeyiliCoefficient = 0 # i'm going to put a algorithm for this then,we will multiply the result with it
+
 @app.route('/')
 def home():
     print("Home")
@@ -65,11 +67,12 @@ def handle_data():
     print("After")
     resultDF_transformed = data_pipeline.fit_transform(resultDF)
     print("After2")
-    print("resultDF_transformed\n "+str(resultDF_transformed))
+    print("resultDF_transformed\n "+str(resultDF_transformed)) # bu resultDF_transformed üzerinde 18.basamakta olan Model_Yılını daha Düzgün bi yere koyucam o zaman düzelmiş olacak 
     xgmat = xgb.DMatrix(resultDF_transformed,missing = -999.0)
     print("After3")
     print("xgmat \n"+str(xgmat))
-    ypred = bst.predict(xgmat)
+    ypred = bst.predict(xgmat) 
+    ypred = ypred * (1.8)
     ypred_str = np.array2string(ypred) 
     print("ypred_str -> "+ypred_str)
     #print(jsonify({'result': ypred_str}))
@@ -96,22 +99,23 @@ def process_dataToDataFrame(xmlTree):
             print(child.tag, child.text)
             if str(child.tag) =="models":  
                 ModelName = child.text
-
-            #To-do FOr Metalic
+                if(ModelName == "HYUNDAI"): #special case for Hyndai because model is trained with "HYUNDAİ"
+                    ModelName ="HYUNDAİ"
             if str(child.tag) =="Metalic":
                 if str(child.text) == "Evet" and (str(child.text) in ColorValues_TupleForMetalic):
                     IsitMetalic = True
+            #To-do for Model_Yili
+            # if str(child.tag) =="Model_Yili":
+            #     modeyiliCoefficient =1.6
             if str(child.tag) =="Marka":
                 MarkaName = child.text
             dictTakenProperties_Values[str(child.tag)] = child.text
-    
-    # brandName = "CLA-Serisi"
-    # dataFrameTOReturn = pd.DataFrame(data)
+
     single_row = pd.read_csv('single_row.csv')
 
     dataFrameTOReturn = single_row.copy()
 
-    dataFrameTOReturn =dataFrameTOReturn.drop("Unnamed: 0",axis=1)
+    dataFrameTOReturn =dataFrameTOReturn.drop("Unnamed: 0",axis=1) # bunu da kaldırıyoz elbette
     
     dataFrameTOReturn.loc[0,"Marka_Model"]= MarkaName +" "+ModelName
     print("MarkaName "+ MarkaName+" ModelName "+ModelName)
@@ -170,7 +174,10 @@ class SparseMatrix(TransformerMixin): # Pipeline
         return res
 
 class ClassForAll: #yeni dataFframe oluştursun olana eklesin  
-    _OHE_categorical_columns = ['Renk','Kasa_Tipi','Konum']
+
+    # 2 problem var .Yıl ve Model durumu etki etmiyor
+    _OHE_categorical_columnsPart1 =['Renk','Kasa_Tipi']
+    _OHE_categorical_columnsPart2 =['Konum']
     _SpecialFor_Categorical=['Aktarma','Garanti','Yakit']
     _BE_categorical_columns = ['Marka_Model']
     _LabelEncoding =['Sanziman','Model_Yili']#Made them manuel
@@ -194,7 +201,26 @@ class ClassForAll: #yeni dataFframe oluştursun olana eklesin
     "Manuel":0,
     "Otomatik":1
     }        
-    def transformFullyEncodedCsrMatrix(self,df): #then this
+
+    def arrangefromDictionary(self,dataframe,dictforMOdelAndTherBinary,name):
+        print("Started")
+        for i in range(0,8):
+            m = str(i)
+            dataframename = "Marka_Model"+"_"+str(i)
+            dataframe[dataframename] =int(dictforMOdelAndTherBinary[name][i]) 
+        print("First for loop ended")
+        for i in range(7,-1,-1):
+            m = str(i)
+            columname = "Marka_Model"+"_"+m
+            move_column = dataframe.pop(columname)
+            dataframe.insert(0, columname, move_column)
+        print("Second for loop ended")
+        return dataframe
+        #dataframe.drop(["Marka_Model"],axis=1,inplace =True)
+        #return dataframe
+
+
+    def transformFullyEncodedCsrMatrix(self,df): #then this ,burda da bu joblib ile aldğım yer yerine bunu d,hot 2 min verileri yerine kendi verilerini koyucam dict den alınan o sayede burası da düzelmiş olacak
         df[self._SpecialFor_Categorical[0]] =df[self._SpecialFor_Categorical[0]].map(self.Aktarma_dictB)
         print("We re here 1")
         df[self._SpecialFor_Categorical[1]] =df[self._SpecialFor_Categorical[1]].map(self.Garanti_dictB)
@@ -206,26 +232,46 @@ class ClassForAll: #yeni dataFframe oluştursun olana eklesin
         df[self._LabelEncoding[0]]=df[self._LabelEncoding[0]].map(self.Sanziman_dictB)
         print("We re here 4")
         if(int(df[self._LabelEncoding[1]])>=2000):#No need for joblib if Model_Yili is greater than 2000 i will remove from today's year
-            #print("Hatayı burda mı alıyoz")
-            df[self._LabelEncoding[1]] = str(datetime.datetime.now().year-int(df[self._LabelEncoding[1]]))
+            df[self._LabelEncoding[1]] = df[self._LabelEncoding[1]].astype(int)
+            print("Hatayı burda mı alıyoz")
+            print(df[self._LabelEncoding[1]])
+            print(type(df[self._LabelEncoding[1]][0]))
+            df[self._LabelEncoding[1]]= datetime.datetime.now().year-df[self._LabelEncoding[1]]
         #Stayed same place(column order)
+        df["Hiz"] = df["Hiz"].astype(int)
+        
+        print(type(df[self._LabelEncoding[1]])) #bu object oluyo
         print("We re here 5")
 
         ohe = joblib.load('./OHEPART.joblib')#One Hot Encoder
         print("We re here 6")
+        ohepart2 = joblib.load('./OHEPART2.joblib')#One Hot Encoder Part2
 
         binry_encoding = joblib.load('./hot2BinaryEncoder.joblib')
         print("We re here 7")
+        #print("binry_encoding için olanlar "+binry_encoding.get_feature_names_in)
         
-        df[self._OHE_categorical_columns] = df[self._OHE_categorical_columns].astype(str)
+        dictforMOdelAndTherBinary = joblib.load('./dictforMOdelAndTherBinary.joblib')
+        name =df["Marka_Model"][0].strip()
+
+
+
+        df[self._OHE_categorical_columnsPart1] = df[self._OHE_categorical_columnsPart1].astype(str)
+        df[self._OHE_categorical_columnsPart2] = df[self._OHE_categorical_columnsPart2].astype(str)
         print("We re here 8")
 
-        hot = ohe.transform(df[self._OHE_categorical_columns])
+        hot = ohe.transform(df[self._OHE_categorical_columnsPart1])
+        hot_part2 = ohepart2.transform(df[self._OHE_categorical_columnsPart2])
         print("We re here 9")
+        
 
         #gone to last (column order)
         hot2 = binry_encoding.transform(df[self._BE_categorical_columns])
         print("We re here 10")
+
+        print("type(hot2) "+ str(type(hot2)))
+        print(hot2["Marka_Model_0"][0])
+        hot2 = self.arrangefromDictionary(hot2,dictforMOdelAndTherBinary,name)
 
         #print("\n Before hot2",hot2)
         #gone to last (column order)
@@ -234,8 +280,16 @@ class ClassForAll: #yeni dataFframe oluştursun olana eklesin
         cold_df = df.select_dtypes(exclude=["object"])#NUmeric Columns
         print("We re here 11")
 
-        
+        for i in df.select_dtypes(exclude=["object"]):
+            print("Clumns we take "+i)
+
+        exclude_columns = ["Sanziman","Model_Yili"]  # Replace with the actual names of the columns you want to exclude
+        cold_df = cold_df.drop(exclude_columns, axis=1)
         #print("\n cold_df ->",cold_df)
+
+        cold_df2 = df[exclude_columns]
+
+        cold2 = csr_matrix(cold_df2.values) 
 
         cold = csr_matrix(cold_df.values) 
         print("We re here 12")
@@ -243,9 +297,9 @@ class ClassForAll: #yeni dataFframe oluştursun olana eklesin
         #print("\n hot ->",hot)
         #print("\n cold ->",cold)
 
-
+        print("type(hot) "+ str(type(hot)))
             
-        final_sparse_matrix = hstack((hot2,cold,hot)) 
+        final_sparse_matrix = hstack((hot2,cold,hot,cold2,hot_part2)) 
         print("We re here 13")
 
         #print("\n final_sparse_matrix ->",final_sparse_matrix)
@@ -255,6 +309,8 @@ class ClassForAll: #yeni dataFframe oluştursun olana eklesin
         #print("\n final_sparse_matrix after ->",final_sparse_matrix)
         #print("final_csr_matrix.shape",final_csr_matrix.shape)
         #print("At Last df.columns -->",df.columns)
+
+        print("TYPE OF final_csr_matrix +")
 
         return final_csr_matrix
 
