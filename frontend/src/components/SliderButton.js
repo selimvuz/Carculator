@@ -29,7 +29,6 @@ function SliderButton(speedoVariable, controlPoint) {
   var speedXML = document.getElementById("realInput");
   if (speedXML != null) {
     var speedValue = speedXML.value.toString();
-    console.log(speedValue);
   }
 
   useEffect(() => {
@@ -81,7 +80,6 @@ function SliderButton(speedoVariable, controlPoint) {
   function handleSliderChangeFive(event) {
     var value = parseInt(event.target.value);
     setBrandValue(value);
-    console.log(value);
     updateModelBox(value);
   }
 
@@ -564,6 +562,12 @@ function SliderButton(speedoVariable, controlPoint) {
     as: 'button'
   }
 
+  function resetFunction() {
+    // eslint-disable-next-line no-restricted-globals
+    setTimeout(() => location.reload(), 1);
+    alert("Values reset!");
+  }
+
   return (
     <>
       <div id='home'>
@@ -612,7 +616,7 @@ function SliderButton(speedoVariable, controlPoint) {
               <div id="BoxContainer">
                 <input type="checkbox" id='metallicBox' name="metallic" value="metallic" onChange={handleBox}
                 />
-                <label id="metallicText" for="metallic"> Metallic</label>
+                <label id="metallicText" htmlFor="metallic"> Metallic</label>
               </div>
             </label>
 
@@ -657,7 +661,7 @@ function SliderButton(speedoVariable, controlPoint) {
                 onChange={handleSliderChangeFive}
               />
               <div id="modelSelect">
-              <label id="modelLabel" for="models">Choose a model:</label>
+              <label id="modelLabel" htmlFor="models">Choose a model:</label>
                 <select id="models" name="models">
                   <option value="corolla">Corolla</option>
                   <option value="yaris">Yaris</option>
@@ -670,7 +674,7 @@ function SliderButton(speedoVariable, controlPoint) {
           </section>
         </div>
       <Fragment>
-            <Button id="resetButton" role="button" href="" filled >Reset</Button>
+            <Button id="resetButton" role="button" onClick={resetFunction} filled >Reset</Button>
             <Button id="carButton" as="a" onClick={saveSliderValuesToXML} filled >Carculate</Button>
       </Fragment>
       </div>

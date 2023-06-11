@@ -19,25 +19,7 @@ export const SidebarData = [
   {
     title: 'About Project',
     path: '/about',
-    icon: <FaIcons.FaCartPlus />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Team',
-    path: '/team',
     icon: <IoIcons.IoMdPeople />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Contact Us',
-    path: '/contact',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Help',
-    path: '/help',
-    icon: <IoIcons.IoMdHelpCircle />,
     cName: 'nav-text'
   }
 ];
