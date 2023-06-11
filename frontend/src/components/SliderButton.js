@@ -536,7 +536,7 @@ function SliderButton(speedoVariable, controlPoint) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(xmlString)
-    }) .then(response => {
+    }).then(response => {
       // Handle the response
       console.log(response.json()) //may this on console as Promise
     })
@@ -564,122 +564,118 @@ function SliderButton(speedoVariable, controlPoint) {
     as: 'button'
   }
 
-  if (controlPoint === 1) {
-    return (
-      <>
-        <div>
+  return (
+    <>
+      <div id='home'>
           <div className="wrapper">
-            <section className="all-sliders">
-              <label className="slider-container first">
-                {renderSpanText()}
-                <input
-                  className="slider"
-                  id="range-slider"
-                  type="range"
-                  min="2002"
-                  step="0.01"
-                  max="2022"
-                  defaultValue="2011"
-                  onChange={handleSliderChangeThree}
+          <section className="all-sliders">
+            <label className="slider-container first">
+              {renderSpanText()}
+              <input
+                className="slider"
+                id="range-slider"
+                type="range"
+                min="2002"
+                step="0.01"
+                max="2022"
+                defaultValue="2011"
+                onChange={handleSliderChangeThree}
+              />
+            </label>
+
+            <label className="slider-container second">
+              <span id='spans2'>Warranty Period: {warrantyText}</span>
+              <input
+                className="slider"
+                id="range-slider2"
+                type="range"
+                min="0"
+                step="0.01"
+                max="4"
+                defaultValue="1"
+                onChange={handleSliderChangeFour}
+              />
+            </label>
+
+            <label className="slider-container third">
+              <span id='spans3'>Color: {sliderText}</span>
+              <input
+                className="slider"
+                id="range-slider3"
+                type="range"
+                min="0"
+                step="0.01"
+                max="9"
+                defaultValue="6"
+                onChange={handleSliderChange}
+              />
+              <div id="BoxContainer">
+                <input type="checkbox" id='metallicBox' name="metallic" value="metallic" onChange={handleBox}
                 />
-              </label>
-  
-              <label className="slider-container second">
-                <span id='spans2'>Warranty Period: {warrantyText}</span>
-                <input
-                  className="slider"
-                  id="range-slider2"
-                  type="range"
-                  min="0"
-                  step="0.01"
-                  max="4"
-                  defaultValue="1"
-                  onChange={handleSliderChangeFour}
-                />
-              </label>
-  
-              <label className="slider-container third">
-                <span id='spans3'>Color: {sliderText}</span>
-                <input
-                  className="slider"
-                  id="range-slider3"
-                  type="range"
-                  min="0"
-                  step="0.01"
-                  max="9"
-                  defaultValue="6"
-                  onChange={handleSliderChange}
-                />
-                <div id="BoxContainer">
-                  <input type="checkbox" id='metallicBox' name="metallic" value="metallic" onChange={handleBox}
-                  />
-                  <label id="metallicText" for="metallic"> Metallic</label>
-                </div>
-              </label>
-  
-              <label className="slider-container fourth">
-                <span id='spans4'>Fuel Type: {FuelText}</span>
-                <input
-                  className="slider"
-                  id="range-slider4"
-                  type="range"
-                  min="0"
-                  step="0.01"
-                  max="2"
-                  defaultValue="1"
-                  onChange={handleSliderChangeTwo}
-                />
-              </label>
-  
-              <label className="slider-container fifth">
-                <span id='spans5'>Location: {locationText}</span>
-                <input
-                  className="slider"
-                  id="range-slider5"
-                  type="range"
-                  min="0"
-                  step="0.01"
-                  max="5"
-                  defaultValue="4"
-                  onChange={handleSliderChangeSix}
-                />
-              </label>
-  
-              <label className="slider-container sixth">
-                <span id='spans6'>Brand: {brandText}</span>
-                <input
-                  className="slider"
-                  id="range-slider6"
-                  type="range"
-                  min="0"
-                  step="0.01"
-                  max="29"
-                  defaultValue="13"
-                  onChange={handleSliderChangeFive}
-                />
-                <div id="modelSelect">
-                <label id="modelLabel" for="models">Choose a model:</label>
-                  <select id="models" name="models">
-                    <option value="corolla">Corolla</option>
-                    <option value="yaris">Yaris</option>
-                    <option value="chr">C-HR</option>
-                  </select>
-                </div>
-              </label>
-  
-              <img id="map" src={map} alt="Map" />
-            </section>
-          </div>
-        <Fragment>
-              <Button id="resetButton" role="button" href="" filled >Reset</Button>
-              <Button id="carButton" as="a" onClick={saveSliderValuesToXML} filled >Carculate</Button>
-        </Fragment>
+                <label id="metallicText" for="metallic"> Metallic</label>
+              </div>
+            </label>
+
+            <label className="slider-container fourth">
+              <span id='spans4'>Fuel Type: {FuelText}</span>
+              <input
+                className="slider"
+                id="range-slider4"
+                type="range"
+                min="0"
+                step="0.01"
+                max="2"
+                defaultValue="1"
+                onChange={handleSliderChangeTwo}
+              />
+            </label>
+
+            <label className="slider-container fifth">
+              <span id='spans5'>Location: {locationText}</span>
+              <input
+                className="slider"
+                id="range-slider5"
+                type="range"
+                min="0"
+                step="0.01"
+                max="5"
+                defaultValue="4"
+                onChange={handleSliderChangeSix}
+              />
+            </label>
+
+            <label className="slider-container sixth">
+              <span id='spans6'>Brand: {brandText}</span>
+              <input
+                className="slider"
+                id="range-slider6"
+                type="range"
+                min="0"
+                step="0.01"
+                max="29"
+                defaultValue="13"
+                onChange={handleSliderChangeFive}
+              />
+              <div id="modelSelect">
+              <label id="modelLabel" for="models">Choose a model:</label>
+                <select id="models" name="models">
+                  <option value="corolla">Corolla</option>
+                  <option value="yaris">Yaris</option>
+                  <option value="chr">C-HR</option>
+                </select>
+              </div>
+            </label>
+
+            <img id="map" src={map} alt="Map" />
+          </section>
         </div>
-      </>
-    );
-  } else if (controlPoint === 2) {
-    console.log("Just walking around uwu");
-  } 
+      <Fragment>
+            <Button id="resetButton" role="button" href="" filled >Reset</Button>
+            <Button id="carButton" as="a" onClick={saveSliderValuesToXML} filled >Carculate</Button>
+      </Fragment>
+      </div>
+    </>
+  );
 }
 
 export default SliderButton;

@@ -140,3 +140,15 @@
 #modelLabel {
   margin-right: 5px;
 }
+
+#stats {
+  display: grid;
+  margin-top: 50px;
+  scale: 0.35;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px; /* Adjust the gap between images */
+}
+
+#stats img {
+  width: 100%; /* Adjust the image width as needed */
+}
