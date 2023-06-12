@@ -593,6 +593,11 @@ function SliderButton() {
             var temp = priceU;
             priceD = priceU;
             priceU = temp;
+          } 
+          if (priceD === priceU) {
+            priceU = priceD * 1.1;
+            var convertedNumber = Math.floor(priceU);
+            priceU = convertedNumber;
           }
           newResult.innerHTML = 'Tahmini fiyat: ' + priceD + '₺ - ' + priceU + '₺<br><span class="second-line">Özellikler:</span> ' + year + ' ' + brand + ' ' + model + ', ' + color + ', ' + fuel + ', ' + location + ', ' + speed + ' hız';
           var parentElement = document.getElementById('home');
