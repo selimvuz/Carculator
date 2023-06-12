@@ -23,7 +23,7 @@ export function Speedo() {
     }
 
     const handleInputChange = (event) => {
-        setInputValue(event.target.value);
+        setInputValue(parseInt(event.target.value));
       };
 
     return (

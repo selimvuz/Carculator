@@ -12,27 +12,27 @@ function Statistics() {
     return window.location.href
   }
   
-  // Example
   var url = getCurrentURL()
   if(url === "http://localhost:3000/statistics") {
     var home = document.getElementById("home");
     var speed = document.getElementById("speedContainer");
     if (home !== "undefined" && home !== null &&
         speed !== "undefined" && speed !== null) {
-      home.style.display = "none";
-      speed.style.display = "none";
+      home.style.visibility = "hidden";
+      speed.style.visibility = "hidden";
     }
   }
+  
   return (
     <div className='statistics'>
       <h1 id='headline'>Statistics</h1>
       <div id='stats'>
-          <img src={colorImg} alt="Colors Dist." />
-          <img src={yearImg} alt="Year Dist." />
-          <img src={locationImg} alt="Location Dist." />
-          <img src={brandImg} alt="Brand Dist." />
-          <img src={warrantyImg} alt="Warranty Dist." />
-          <img src={fuelImg} alt="Fuel Dist." />
+          <img className="zoom-image" src={colorImg} alt="Colors Dist." />
+          <img className="zoom-image" src={yearImg} alt="Year Dist." />
+          <img className="zoom-image" src={locationImg} alt="Location Dist." />
+          <img className="zoom-image" src={brandImg} alt="Brand Dist." />
+          <img className="zoom-image" src={warrantyImg} alt="Warranty Dist." />
+          <img className="zoom-image" src={fuelImg} alt="Fuel Dist." />
         </div>
     </div>
   );

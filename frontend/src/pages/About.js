@@ -13,8 +13,8 @@ function Products() {
     var speed = document.getElementById("speedContainer");
     if (home !== "undefined" && home !== null &&
         speed !== "undefined" && speed !== null) {
-      home.style.display = "none";
-      speed.style.display = "none";
+      home.style.visibility = "hidden";
+      speed.style.visibility = "hidden";
     }
   }
   return (

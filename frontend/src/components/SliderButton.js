@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Button.css';
 import { Fragment } from 'https://cdn.skypack.dev/react'
 import { js2xml } from 'xml-js';
 import { saveAs } from 'file-saver';
 import map from './assets/map.png';
 
-function SliderButton(speedoVariable, controlPoint) {
-  controlPoint = 1;
+function SliderButton() {
   var postMetallic = "Hayır";
   const [sliderValue, setSliderValue] = useState(6);
   const [fuelValue, setFuelValue] = useState(1);
@@ -26,6 +25,7 @@ function SliderButton(speedoVariable, controlPoint) {
   const brandNames = ["Alfa Romeo", "Mitsubishi", "MINI", "Mazda", "Cupra", "SUZUKI", "Subaru", "Jeep", "Ssangyong", "Porsche", "Mercedes-Benz", "Honda", "Toyota", "Skoda", "SEAT", "Renault", "Peugeot", "Opel", "Nissan", "Land Rover", "KIA", "HYUNDAI", "Ford", "Fiat", "Dacia", "Citroen", "BMW", "Audi", "Volvo", "Volkswagen"]; const [brandText, setBrandText] = useState(brandNames[brandValue]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const locationNames = ["Mediterranean Region", "Marmara Region", "Black Sea Region", "Aegean Region", "Central Anatolia", "Southeastern Anatolia"]; const [locationText, setLocationText] = useState(locationNames[locationValue]);
+  
   var speedXML = document.getElementById("realInput");
   if (speedXML != null) {
     var speedValue = speedXML.value.toString();
@@ -614,9 +614,9 @@ function SliderButton(speedoVariable, controlPoint) {
                 onChange={handleSliderChange}
               />
               <div id="BoxContainer">
-                <input type="checkbox" id='metallicBox' name="metallic" value="metallic" onChange={handleBox}
+                <input type="checkbox" id='metallicBox' name="metallicBox" value="metallic" onChange={handleBox}
                 />
-                <label id="metallicText" htmlFor="metallic"> Metallic</label>
+                <label id="metallicText" htmlFor="metallicBox"> Metallic</label>
               </div>
             </label>
 

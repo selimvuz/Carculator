@@ -13,3 +13,25 @@ h1 {
     max-width: 1200px;
     margin-top: 100px;
 }
+
+#stats {
+    position: relative;
+    display: grid;
+    margin-top: 50px;
+    scale: 0.7;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px; /* Adjust the gap between images */
+}
+  
+#stats img {
+  cursor: pointer;
+  width: 100%; /* Adjust the image width as needed */
+}
+
+.zoom-image {
+  transition: transform 0.3s;
+}
+
+.zoom-image:hover {
+  transform: scale(2);
+}
