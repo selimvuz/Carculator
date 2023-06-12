@@ -491,19 +491,22 @@ function SliderButton() {
       postWarranty = "Garantisiz";
     }
     else if (warrantyNames[warrantyValue] === "3 months") {
-      postWarranty = "3 ay"
+      postWarranty = "1 yıla kadar"
     }
     else if (warrantyNames[warrantyValue] === "6 months") {
-      postWarranty = "6 ay"
+      postWarranty = "1 yıla kadar"
     }
     else if (warrantyNames[warrantyValue] === "1 year") {
-      postWarranty = "1 yıl"
+      postWarranty = "1 yıldan uzun"
     }
     else {
       postWarranty = "undefined"
     }
 
     var SelectedValue = document.getElementById("models").value;
+    if (brandNames[brandValue] === "HYUNDAI") {
+      brandNames[brandValue] = "HYUNDAİ";
+    }
 
     // Get slider values
     const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue,postMetallic];
@@ -528,17 +531,22 @@ function SliderButton() {
     // saveAs(blob, 'slider_values.xml');
     // These 2 lines saves an xml file for testing purposes
 
-    fetch('/api/endpoint', {
+    fetch('http://localhost:5000/api/endpoint', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(xmlString)
-    }).then(response => {
-      // Handle the response
-      console.log(response.json()) //may this on console as Promise
-    })
-  };
+    }).then(response => response.json())
+      .then(data => {
+        const result = data.result; // Extract the result number
+        const numberString = result.match(/\[(.*?)\]/)[1];
+        const inflation = parseInt(numberString, 10) * 3;
+        var roundedDown = Math.round(inflation / 1000000) * 1000000;;
+        var roundedUp = Math.round(inflation / 10000) * 10000;
+        progressBar(roundedDown, roundedUp, postColor, postFuelType, brandNames[brandValue], SelectedValue, postLocation, speedValue, postMetallic, yearValue);
+      });
+  }
   
   const Button = ({ as, children, filled, secondary, ...rest }) => {
     const that = {
@@ -568,8 +576,59 @@ function SliderButton() {
     alert("Values reset!");
   }
 
+  function progressBar(priceD, priceU, color, fuel, brand, model, location, speed, metal, year) {
+    var elem = document.getElementById("myBar");
+    var i = 0;
+    if (i === 0) {
+      i = 1;
+      var width = 1;
+      var id = setInterval(frame, 50);
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+          i = 0;
+          var newResult = document.createElement('div');
+          newResult.id = 'lastResult';
+          if (priceD > priceU) {
+            var temp = priceU;
+            priceD = priceU;
+            priceU = temp;
+          }
+          newResult.innerHTML = 'Tahmini fiyat: ' + priceD + '₺ - ' + priceU + '₺<br><span class="second-line">Özellikler:</span> ' + year + ' ' + brand + ' ' + model + ', ' + color + ', ' + fuel + ', ' + location + ', ' + speed + ' hız';
+          var parentElement = document.getElementById('home');
+          parentElement.appendChild(newResult);
+          if (color === "Siyah") {
+            newResult.style.color = "white";
+          } else if (color === "Beyaz") {
+            newResult.style.color = "black";
+          }
+        } else {
+          width++;
+          elem.style.width = width + "%";
+        }
+      }
+    }
+    var home = document.getElementById("home");
+    var progress = document.getElementById("myProgress");
+    var speedC = document.getElementById("speedContainer");
+    var header = document.getElementById("headline");
+    var nav = document.getElementById("navbarID");
+    if (home !== "undefined" && home !== null &&
+        progress !== "undefined" && progress !== null &&
+        header !== "undefined" && header !== null) {
+      home.style.visibility = "hidden";
+      progress.style.visibility = "visible";
+      speedC.style.visibility = "hidden";
+      header.style.visibility = "hidden";
+      nav.style.visibility = "hidden";
+    }
+  }
+
   return (
     <>
+      <div id="myProgress">
+        <div id="myBar"></div>
+      </div>
       <div id='home'>
           <div className="wrapper">
           <section className="all-sliders">

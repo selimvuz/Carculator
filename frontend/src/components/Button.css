@@ -140,3 +140,39 @@
 #modelLabel {
   margin-right: 5px;
 }
+
+#myProgress {
+  width: 75%;
+  background-color: #ddd;
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #eb6212;
+  border-color: #0d0d0d;
+  border-width: 5px;
+}
+
+#lastResult {
+  z-index: 999;
+  visibility: visible;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 40px;
+}
+
+.second-line {
+  display: block;
+  margin-top: 10px; /* Adjust this value as needed */
+}
