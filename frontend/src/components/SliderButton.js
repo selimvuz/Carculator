@@ -29,6 +29,8 @@ function SliderButton() {
   var speedXML = document.getElementById("realInput");
   if (speedXML != null) {
     var speedValue = speedXML.value.toString();
+  } else {
+    speedValue = 170;
   }
 
   useEffect(() => {
@@ -491,7 +493,7 @@ function SliderButton() {
       postWarranty = "Garantisiz";
     }
     else if (warrantyNames[warrantyValue] === "3 months") {
-      postWarranty = "1 yıla kadar"
+      postWarranty = "1 Yıla kadar"
     }
     else if (warrantyNames[warrantyValue] === "6 months") {
       postWarranty = "1 Yıla kadar"
@@ -508,8 +510,16 @@ function SliderButton() {
       brandNames[brandValue] = "HYUNDAİ";
     }
 
+    if (SelectedValue === "corolla") {
+      SelectedValue = "Corolla";
+    } else if (SelectedValue === "yaris") {
+      SelectedValue = "Yaris";
+    } else if (SelectedValue === "chr") {
+      SelectedValue = "C-HR";
+    }
+
     // Get slider values
-    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue,postMetallic];
+    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue, postMetallic];
   
     // Define tag names for each value
     const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz','Metalic'];
