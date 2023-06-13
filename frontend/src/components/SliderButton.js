@@ -494,13 +494,13 @@ function SliderButton() {
       postWarranty = "1 yıla kadar"
     }
     else if (warrantyNames[warrantyValue] === "6 months") {
-      postWarranty = "1 yıla kadar"
+      postWarranty = "1 Yıla kadar"
     }
     else if (warrantyNames[warrantyValue] === "1 year") {
-      postWarranty = "1 yıldan uzun"
+      postWarranty = "1 YIldan uzun"
     }
-    else {
-      postWarranty = "undefined"
+    else {//warrantyNames[warrantyValue] === "DS warranty"
+      postWarranty = "1 YIldan uzun"
     }
 
     var SelectedValue = document.getElementById("models").value;

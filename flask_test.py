@@ -75,19 +75,38 @@ def handle_data():
     print("After3")
     print("xgmat \n"+str(xgmat))
     ypred = bst.predict(xgmat)
-    ypred = ypred * (1.8)
+    print("multiply  "+str((adjustmentForYear(resultDF) *adjustmentForInfulation())))
+    ypred = ypred *(adjustmentForYear(resultDF) *adjustmentForInfulation())
     ypred_str = np.array2string(ypred)
     print("ypred_str -> "+ypred_str)
-    # print(jsonify({'result': ypred_str}))
 
     response = jsonify({'result': ypred_str})
     print("response " + str(response.data))
 
-    # Set the appropriate response headers
-    # response.headers.add('Access-Control-Allow-Origin', '*')
-    # response.headers.add('Access-Control-Allow-Methods', 'POST')
-    # response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
     return jsonify({'result': ypred_str})
+
+def adjustmentForYear(df):
+    Year =int(df["Model_Yili"][0])
+    print(Year)
+    if (int(Year)>= 2000):
+        ageofCar = datetime.datetime.now().year - Year
+    ageofCar =  Year
+    if ageofCar == 1:
+        return 2
+    elif ageofCar ==20:
+        return 1
+    else:
+        ratio = 2 -(ageofCar -1) * 0.09
+        return ratio
+
+def adjustmentForInfulation():
+    # https://enagrup.org/bulten/0523.pdf //It's June. i took others just like this
+    # Ocak 4,72%
+    # Şubat 5,66%
+    # Mart -1,49%
+    # Nisan 7,53%
+    # Mayıs 4,81%
+    return 1.2123
 
 
 def process_dataToDataFrame(xmlTree):
@@ -102,12 +121,7 @@ def process_dataToDataFrame(xmlTree):
             print(child.tag, child.text)
             if str(child.tag) == "models":
                 ModelName = child.text
-                # special case for Hyndai because model is trained with "HYUNDAİ"
-                if (ModelName == "HYUNDAI"):
-                    ModelName = "HYUNDAİ"
-            if str(child.tag) == "Metalic":
-                if str(child.text) == "Evet" and (str(child.text) in ColorValues_TupleForMetalic):
-                    IsitMetalic = True
+
             # To-do for Model_Yili
             # if str(child.tag) =="Model_Yili":
             #     modeyiliCoefficient =1.6
@@ -217,6 +231,7 @@ class ClassForAll:  # yeni dataFframe oluştursun olana eklesin
         return dataframe
         # dataframe.drop(["Marka_Model"],axis=1,inplace =True)
         # return dataframe
+
 
     # then this ,burda da bu joblib ile aldğım yer yerine bunu d,hot 2 min verileri yerine kendi verilerini koyucam dict den alınan o sayede burası da düzelmiş olacak
     def transformFullyEncodedCsrMatrix(self, df):
