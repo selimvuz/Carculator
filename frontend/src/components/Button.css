@@ -129,7 +129,7 @@
   --bg: #c7edef;
 }
 
-#BoxContainer, #modelSelect {
+#BoxContainer, #modelSelect, #capacitySelect {
   position: relative;
   color: #0d0d0d;
   float: right;
@@ -137,7 +137,7 @@
   padding: 2px;
 }
 
-#modelLabel {
+#modelLabel, #capacityLabel, #torkLabel {
   margin-right: 5px;
 }
 

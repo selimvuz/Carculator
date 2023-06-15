@@ -506,23 +506,16 @@ function SliderButton() {
     }
 
     var SelectedValue = document.getElementById("models").value;
+    var CapacityValue = document.getElementById("capacity").value;
     if (brandNames[brandValue] === "HYUNDAI") {
       brandNames[brandValue] = "HYUNDAİ";
     }
 
-    if (SelectedValue === "corolla") {
-      SelectedValue = "Corolla";
-    } else if (SelectedValue === "yaris") {
-      SelectedValue = "Yaris";
-    } else if (SelectedValue === "chr") {
-      SelectedValue = "C-HR";
-    }
-
     // Get slider values
-    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue, postMetallic];
+    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue, postMetallic, CapacityValue];
   
     // Define tag names for each value
-    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz','Metalic'];
+    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz', 'Metalic', 'Depo'];
 
     // Create XML object
     const xmlObject = {
@@ -616,6 +609,12 @@ function SliderButton() {
             newResult.style.color = "white";
           } else if (color === "Beyaz") {
             newResult.style.color = "black";
+          } else if (color === "Koyu Mor") {
+            newResult.style.color = "white";
+          } else if (color === "Açık Mavi") {
+            newResult.style.color = "white";
+          } else if (color === "Kırmızı") {
+            newResult.style.color = "white";
           }
         } else {
           width++;
@@ -706,6 +705,21 @@ function SliderButton() {
                 defaultValue="1"
                 onChange={handleSliderChangeTwo}
               />
+              <div id="capacitySelect">
+              <label id="capacityLabel" htmlFor="capacity">Capacity:</label>
+                <select id="capacity" name="capacity">
+                  <option value="37">35-40 LT</option>
+                  <option value="42">40-45 LT</option>
+                  <option value="47">45-50 LT</option>
+                  <option value="52">50-55 LT</option>
+                  <option value="57">55-60 LT</option>
+                  <option value="62">60-65 LT</option>
+                  <option value="67">65-70 LT</option>
+                  <option value="75">70-80 LT</option>
+                  <option value="85">80-90 LT</option>
+                  <option value="95">90-100 LT</option>
+                </select>
+              </div>
             </label>
 
             <label className="slider-container fifth">
@@ -737,9 +751,9 @@ function SliderButton() {
               <div id="modelSelect">
               <label id="modelLabel" htmlFor="models">Choose a model:</label>
                 <select id="models" name="models">
-                  <option value="corolla">Corolla</option>
-                  <option value="yaris">Yaris</option>
-                  <option value="chr">C-HR</option>
+                  <option value="Corolla">Corolla</option>
+                  <option value="Yaris">Yaris</option>
+                  <option value="C-HR">C-HR</option>
                 </select>
               </div>
             </label>

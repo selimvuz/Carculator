@@ -46,6 +46,29 @@ export function Speedo() {
                 Value:
                 <input id='realInput' type="number" name="speednum" value={inputValue} onChange={handleInputChange} min="145" max="275"/>
             </label>
+            <label id="torkLabel" htmlFor="tork">Torque:</label>
+                <select id="tork" name="tork">
+                    <option value="105">95-120</option>
+                    <option value="130">120-145</option>
+                    <option value="155">145-170</option>
+                    <option value="180">170-195</option>
+                    <option value="230">220-245</option>
+                    <option value="255">245-270</option>
+                    <option value="280">270-295</option>
+                    <option value="305">295-320</option>
+                    <option value="330">320-345</option>
+                    <option value="355">345-370</option>
+                    <option value="380">370-395</option>
+                    <option value="405">395-420</option>
+                    <option value="430">420-445</option>
+                    <option value="455">445-470</option>
+                    <option value="480">470-495</option>
+                    <option value="505">495-520</option>
+                    <option value="530">520-545</option>
+                    <option value="555">545-570</option>
+                    <option value="580">570-595</option>
+                    <option value="605">595-620</option>
+                </select>
         </div>
     )
 }
