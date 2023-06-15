@@ -1,6 +1,6 @@
 #speedContainer {
     position: absolute;
-    top: 45%;
+    top: 50%;
     right: 0;
     transform: translate(0, -50%);
     text-align: center;
@@ -14,11 +14,21 @@
 
 
 #inputSpeed {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 75px;
     color: white;
-    padding: 5px;
+    margin-right: 5px;
+}
+
+#OtherAtt {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+#CylinderLabel, #torkLabel, #GearLabel {
+    display: block;
+    text-align: center;
+}
+
+#c0, #c1, #c2, #c3 {
+    padding: 10px;
 }

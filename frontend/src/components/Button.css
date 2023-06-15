@@ -129,7 +129,7 @@
   --bg: #c7edef;
 }
 
-#BoxContainer, #modelSelect, #capacitySelect {
+#BoxContainer, #modelSelect, #capacitySelect, #driveTrainSelect {
   position: relative;
   color: #0d0d0d;
   float: right;
@@ -137,7 +137,7 @@
   padding: 2px;
 }
 
-#modelLabel, #capacityLabel, #torkLabel {
+#modelLabel, #capacityLabel, #torkLabel, #driveLabel {
   margin-right: 5px;
 }
 

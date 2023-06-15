@@ -507,15 +507,19 @@ function SliderButton() {
 
     var SelectedValue = document.getElementById("models").value;
     var CapacityValue = document.getElementById("capacity").value;
+    var DriveTrainValue = document.getElementById("drivetrain").value;
+    var TorqueValue = document.getElementById("tork").value;
+    var CylinderValue = document.getElementById("cylinder").value;
+    var GearboxValue = document.getElementById("gearbox").value;
     if (brandNames[brandValue] === "HYUNDAI") {
       brandNames[brandValue] = "HYUNDAİ";
     }
 
     // Get slider values
-    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue, postMetallic, CapacityValue];
+    const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue, postMetallic, CapacityValue, DriveTrainValue, TorqueValue, CylinderValue, GearboxValue];
   
     // Define tag names for each value
-    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz', 'Metalic', 'Depo'];
+    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz', 'Metalic', 'Depo', 'Aktarma', 'MaksTork', 'Silindir', 'Şanzıman'];
 
     // Create XML object
     const xmlObject = {
@@ -547,7 +551,7 @@ function SliderButton() {
         const inflation = parseInt(numberString, 10) * 3;
         var roundedDown = Math.round(inflation / 1000000) * 1000000;;
         var roundedUp = Math.round(inflation / 10000) * 10000;
-        progressBar(roundedDown, roundedUp, postColor, postFuelType, brandNames[brandValue], SelectedValue, postLocation, speedValue, postMetallic, yearValue);
+        progressBar(roundedDown, roundedUp, postColor, postFuelType, brandNames[brandValue], SelectedValue, postLocation, speedValue, postMetallic, yearValue, CapacityValue, DriveTrainValue, TorqueValue, CylinderValue, GearboxValue);
       });
   }
   
@@ -579,7 +583,7 @@ function SliderButton() {
     alert("Values reset!");
   }
 
-  function progressBar(priceD, priceU, color, fuel, brand, model, location, speed, metal, year) {
+  function progressBar(priceD, priceU, color, fuel, brand, model, location, speed, metal, year, capacity, drivetrain, torque, cylinder, gearbox) {
     var elem = document.getElementById("myBar");
     var i = 0;
     if (i === 0) {
@@ -602,7 +606,8 @@ function SliderButton() {
             var convertedNumber = Math.floor(priceU);
             priceU = convertedNumber;
           }
-          newResult.innerHTML = 'Tahmini fiyat: ' + priceD + '₺ - ' + priceU + '₺<br><span class="second-line">Özellikler:</span> ' + year + ' ' + brand + ' ' + model + ', ' + color + ', ' + fuel + ', ' + location + ', ' + speed + ' hız';
+          newResult.style.width = '750px';
+          newResult.innerHTML = 'Tahmini fiyat: ' + priceD + '₺ - ' + priceU + '₺<br><span class="second-line">Özellikler:</span> ' + year + ' ' + brand + ' ' + model + ', ' + color + ', ' + fuel + ', ' + location + ', ' + speed + ' Hız, ' + capacity + ' LT, ' + drivetrain + ', ' + torque + ' Tork, ' + cylinder + ' Silindir, ' + gearbox;
           var parentElement = document.getElementById('home');
           parentElement.appendChild(newResult);
           if (color === "Siyah") {
@@ -658,6 +663,14 @@ function SliderButton() {
                 defaultValue="2011"
                 onChange={handleSliderChangeThree}
               />
+              <div id="driveTrainSelect">
+              <label id="driveLabel" htmlFor="drivetrain">Drivetrain:</label>
+                <select id="drivetrain" name="drivetrain">
+                  <option value="Önden Çekiş">Front-Wheel Drive (FWD)</option>
+                  <option value="Arkadan İtiş">Rear-Wheel Drive (RWD)</option>
+                  <option value="4x4">Four-Wheel Drive (4WD)</option>
+                </select>
+              </div>
             </label>
 
             <label className="slider-container second">
