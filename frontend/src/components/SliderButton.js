@@ -519,7 +519,7 @@ function SliderButton() {
     const sliderValues = [postColor, postFuelType, yearValue, postWarranty, brandNames[brandValue] + " " + SelectedValue, postLocation, speedValue, postMetallic, CapacityValue, DriveTrainValue, TorqueValue, CylinderValue, GearboxValue];
   
     // Define tag names for each value
-    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz', 'Metalic', 'Depo', 'Aktarma', 'MaksTork', 'Silindir', 'Şanzıman'];
+    const tagNames = ['Renk', 'Yakit', 'Model_Yili', 'Garanti', 'Marka', 'Konum', 'Hiz', 'Metalic', 'Depo', 'Aktarma', 'MaksTork', 'Silindir', 'Sanziman'];
 
     // Create XML object
     const xmlObject = {

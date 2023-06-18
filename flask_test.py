@@ -121,7 +121,9 @@ def process_dataToDataFrame(xmlTree):
             print(child.tag, child.text)
             if str(child.tag) == "models":
                 ModelName = child.text
-
+            if(str(child.tag) == "MaksTork"):
+                print("Here")
+                child.tag = "MaxTork"
             # To-do for Model_Yili
             # if str(child.tag) =="Model_Yili":
             #     modeyiliCoefficient =1.6
