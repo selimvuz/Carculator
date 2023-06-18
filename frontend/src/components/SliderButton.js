@@ -632,14 +632,17 @@ function SliderButton() {
     var speedC = document.getElementById("speedContainer");
     var header = document.getElementById("headline");
     var nav = document.getElementById("navbarID");
+    var navActive = document.getElementsByClassName("nav-menu active");
     if (home !== "undefined" && home !== null &&
         progress !== "undefined" && progress !== null &&
-        header !== "undefined" && header !== null) {
+        header !== "undefined" && header !== null &&
+        navActive !== "undefined" && navActive !== null) {
       home.style.visibility = "hidden";
       progress.style.visibility = "visible";
       speedC.style.visibility = "hidden";
       header.style.visibility = "hidden";
       nav.style.visibility = "hidden";
+      navActive.style.visibility = "hidden";
     }
   }
 
