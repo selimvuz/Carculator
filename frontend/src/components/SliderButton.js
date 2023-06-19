@@ -580,7 +580,7 @@ function SliderButton() {
   function resetFunction() {
     // eslint-disable-next-line no-restricted-globals
     setTimeout(() => location.reload(), 1);
-    alert("Values reset!");
+    alert("Reset!");
   }
 
   function progressBar(priceD, priceU, color, fuel, brand, model, location, speed, metal, year, capacity, drivetrain, torque, cylinder, gearbox) {
@@ -632,6 +632,7 @@ function SliderButton() {
     var speedC = document.getElementById("speedContainer");
     var header = document.getElementById("headline");
     var nav = document.getElementById("navbarID");
+    var reset = document.getElementById("resetButton");
     // var navActive = document.getElementsByClassName("nav-menu active");
     if (home !== "undefined" && home !== null &&
         progress !== "undefined" && progress !== null &&
@@ -641,6 +642,11 @@ function SliderButton() {
       speedC.style.visibility = "hidden";
       header.style.visibility = "hidden";
       nav.style.visibility = "hidden";
+      reset.style.visibility = "visible";
+      reset.style.position = "absolute";
+      reset.style.top = "70%";
+      reset.style.left = "50%";
+      reset.style.transform = "translate(-50%, -50%)";
     }
   }
 
