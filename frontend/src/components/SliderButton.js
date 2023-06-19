@@ -673,9 +673,9 @@ function SliderButton() {
               <div id="driveTrainSelect">
               <label id="driveLabel" htmlFor="drivetrain">Drivetrain:</label>
                 <select id="drivetrain" name="drivetrain">
-                  <option value="Önden Çekiş">Front-Wheel Drive (FWD)</option>
-                  <option value="Arkadan İtiş">Rear-Wheel Drive (RWD)</option>
-                  <option value="4x4">Four-Wheel Drive (4WD)</option>
+                  <option value="Önden Çekiş">Front-Wheel (FWD)</option>
+                  <option value="Arkadan İtiş">Rear-Wheel (RWD)</option>
+                  <option value="4x4">Four-Wheel (4WD)</option>
                 </select>
               </div>
             </label>
