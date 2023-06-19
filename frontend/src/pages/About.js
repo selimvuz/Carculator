@@ -13,14 +13,17 @@ function Products() {
     var speed = document.getElementById("speedContainer");
     var progress = document.getElementById("myProgress");
     var last = document.getElementById("lastResult");
-    if (home !== "undefined" && home !== null &&
-        speed !== "undefined" && speed !== null &&
-        progress !== "undefined" && progress !== null &&
-        last !== "undefined" && last !== null) {
+    if ((home !== "undefined" && home !== null &&
+        speed !== "undefined" && speed !== null) ||
+        (progress !== "undefined" && progress !== null &&
+        last !== "undefined" && last !== null)) {
       home.style.visibility = "hidden";
       speed.style.visibility = "hidden";
-      progress.style.visibility = "hidden";
-      last.style.visibility = "hidden";
+      if (progress !== "undefined" && progress !== null &&
+          last !== "undefined" && last !== null) {
+            progress.style.visibility = "hidden";
+            last.style.visibility = "hidden";
+          }
     }
   }
   return (
