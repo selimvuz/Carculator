@@ -777,10 +777,12 @@ function SliderButton() {
             <img id="map" src={map} alt="Map" />
           </section>
         </div>
-      <Fragment>
-            <Button id="resetButton" role="button" onClick={resetFunction} filled >Reset</Button>
-            <Button id="carButton" as="a" onClick={saveSliderValuesToXML} filled >Carculate</Button>
-      </Fragment>
+        <div className='button-container'>
+          <Fragment>
+              <Button id="resetButton" role="button" onClick={resetFunction} filled >Reset</Button>
+              <Button id="carButton" role="button" onClick={saveSliderValuesToXML} filled >Carculate</Button>
+          </Fragment>
+        </div>
       </div>
     </>
   );

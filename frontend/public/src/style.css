@@ -5,16 +5,23 @@ body {
   overflow: hidden;
 }
 
-.all-sliders{
-  position: absolute;
+.all-sliders {
+  position: fixed;
   max-width: 1000px;
-  height: auto;
+  width: 90%; /* Adjust the width as needed */
+  margin: 0 auto;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .slider-container {
-  width: 50%;
-  float: left;
-  margin: 10px 10px;
+  width: 33.33%; /* Adjust the width as needed */
+  margin: 10px;
   margin-top: 150px;
 }
 
@@ -49,6 +56,13 @@ body {
   border-radius: 50%;
   background: #655ecf;
   cursor: pointer;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .slider-container {
+    margin-top: 50px; /* Adjust the margin-top value as needed */
+  }
 }
 
 
