@@ -7,6 +7,11 @@ Using data obtained from web scraping, we have created an application that can b
 ![ezgif com-video-to-gif](https://github.com/Epilogun/GraduationProject/assets/64128266/032eaa60-f077-4ab3-b803-3d8f0e3f734c)
 <br><br /> 
 
+### Requirements
+
+Node.js 18.00.0^
+Python3  3.10.0^
+
 ### Backend
 Flask + XGboost Based Machine Learning Model
 
