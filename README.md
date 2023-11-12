@@ -1,6 +1,6 @@
 # Carculator - Car Price Estimation App
 ## Summary
-Using data obtained from web scraping, we have created an application that can be accessed interactively through Frontend. This application aims to help both the industry and users by predicting car prices based on the technical and physical characteristics of cars (Note: It's non commercial based Web Application which is just used for Graduation Project, If you want to use data as commercial base pls contact with https://dod.com.tr/)
+This project harnesses user input to deliver precise car pricing insights. Powered by Flask on the backend and React.js on the frontend. Our model's training data is enriched through web scraping.
 
 ![ezgif com-gif-to-mp4](https://github.com/Epilogun/GraduationProject/assets/64128266/7dd5cfbd-ec7d-47fb-accb-e91270d2c58e)
 <br><br /> 
